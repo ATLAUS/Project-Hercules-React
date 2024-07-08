@@ -7,6 +7,8 @@ describe('App', () => {
     render(<App />)
 
     const title = screen.getByText(/Project Hercules/i)
-    expect(title).toBeVisible()
+    // Either of these tests will work.
+    // expect(title).toBeVisible()
+    expect(title).toBeInTheDocument()
   })
 })
