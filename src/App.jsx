@@ -1,6 +1,6 @@
 import './App.css'
 import * as components from './components'
-import { Profile } from './profile'
+import { Profile } from './tempProfile'
 
 export const App = () => {
   return (
