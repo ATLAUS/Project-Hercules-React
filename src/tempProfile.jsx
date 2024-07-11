@@ -1,3 +1,6 @@
+// TODO: Delete before deployment.
+// This is a temporary profile component to test the auth0 authentication and authorization.
+
 import { useAuth0 } from '@auth0/auth0-react'
 
 export const Profile = () => {
