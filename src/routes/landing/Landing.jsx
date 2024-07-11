@@ -1,9 +1,9 @@
-import './Root.scss'
+import './Landing.scss'
 import { Profile } from '../../tempProfile'
 import * as components from '../../components'
 import { useNavigate } from 'react-router-dom'
 
-export const Root = () => {
+export const Landing = () => {
   const navigate = useNavigate()
 
   return (

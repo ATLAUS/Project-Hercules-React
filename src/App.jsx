@@ -5,7 +5,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <route.Root />
+    element: <route.Landing />
   },
   {
     // TODO: This is a test route to test the Home component.
@@ -17,9 +17,7 @@ const router = createBrowserRouter([
 export const App = () => {
   return (
     <>
-      <main>
-        <RouterProvider router={router}></RouterProvider>
-      </main>
+      <RouterProvider router={router}></RouterProvider>
     </>
   )
 }

@@ -1,3 +1,3 @@
-import { Root } from './root/Root'
+import { Landing } from './landing/Landing'
 
-export { Root }
+export { Landing }
