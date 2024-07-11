@@ -1,5 +1,5 @@
 import { describe, test, expect, afterEach } from 'vitest'
-import { cleanup, render, screen } from '@testing-library/react'
+import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import { App } from '../src/App'
 
 describe('App', () => {
@@ -26,5 +26,28 @@ describe('App', () => {
 
     const logoutButton = screen.getByText('Log Out')
     expect(logoutButton).toBeInTheDocument()
+  })
+
+  test('should render home nav button', () => {
+    render(<App />)
+
+    const homeButton = screen.getByText('Home')
+    expect(homeButton).toBeInTheDocument()
+  })
+})
+
+describe('App navigation', () => {
+  afterEach(cleanup)
+
+  test('should navigate to home page', async () => {
+    render(<App />)
+
+    const homeButton = screen.getByText('Home')
+    homeButton.click()
+
+    await waitFor(() => {
+      const homePage = screen.getByText('Home page goes here')
+      expect(homePage).toBeInTheDocument()
+    })
   })
 })

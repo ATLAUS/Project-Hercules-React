@@ -1,16 +1,23 @@
 import './App.scss'
-import { Profile } from './tempProfile'
-import * as components from './components'
+import * as route from './routes'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+const router = createBrowserRouter([
+  {
+    path: '/',
+    element: <route.Landing />
+  },
+  {
+    // TODO: This is a test route to test the Home component.
+    path: '/home',
+    element: <div>Home page goes here</div>
+  }
+])
 
 export const App = () => {
   return (
     <>
-      <h1>Project Hercules</h1>
-      <components.LoginButton />
-      <components.LogoutButton />
-      <div>
-        <Profile />
-      </div>
+      <RouterProvider router={router}></RouterProvider>
     </>
   )
 }
