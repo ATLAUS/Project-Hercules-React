@@ -8,9 +8,17 @@ const router = createBrowserRouter([
     element: <route.Landing />
   },
   {
+    path: '/form',
+    element: <route.Form />
+  },
+  {
     // TODO: This is a test route to test the Home component.
     path: '/home',
-    element: <div>Home page goes here</div>
+    element: <route.Home />
+  },
+  {
+    path: '/workout',
+    element: <route.Workout />
   }
 ])
 
