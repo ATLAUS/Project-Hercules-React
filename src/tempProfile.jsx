@@ -16,7 +16,7 @@ export const Profile = () => {
         }
       })
 
-      const response = await fetchUserDetails(accessToken)
+      const response = await fetchUserDetails(accessToken, user)
       console.log(response)
     } catch (err) {
       console.log(err.message)
