@@ -39,6 +39,7 @@ describe('App', () => {
 describe('App navigation', () => {
   afterEach(cleanup)
 
+  //TODO : Figure out how to reset test to Landing page
   test('should navigate to home page', async () => {
     render(<App />)
 
@@ -46,8 +47,32 @@ describe('App navigation', () => {
     homeButton.click()
 
     await waitFor(() => {
-      const homePage = screen.getByText('Home page goes here')
+      const homePage = screen.getByText('Home')
       expect(homePage).toBeInTheDocument()
+    })
+  })
+
+  test('should navigate to form page', async () => {
+    render(<App />)
+
+    const formButton = screen.getByText('Form')
+    formButton.click()
+
+    await waitFor(() => {
+      const formPage = screen.getByText('Form')
+      expect(formPage).toBeInTheDocument()
+    })
+  })
+
+  test('should navigate to workout page', async () => {
+    render(<App />)
+
+    const workoutButton = screen.getByText('Workout')
+    workoutButton.click()
+
+    await waitFor(() => {
+      const workoutPage = screen.getByText('Workout')
+      expect(workoutPage).toBeInTheDocument()
     })
   })
 })
