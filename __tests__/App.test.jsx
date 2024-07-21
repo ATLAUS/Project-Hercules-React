@@ -36,6 +36,8 @@ describe('App', () => {
   })
 })
 
+// TODO: Temporarily disabled.
+// Will reimplement after page components are implemented.
 // describe('App navigation', () => {
 //   afterEach(cleanup)
 
