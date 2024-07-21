@@ -1,5 +1,5 @@
 import './Workout.scss'
-import * as components from '../../components'
+import * as components from '../../shared/components'
 import { useNavigate } from 'react-router-dom'
 
 export const Workout = () => {

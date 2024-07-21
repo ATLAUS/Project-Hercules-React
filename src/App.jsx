@@ -12,7 +12,6 @@ const router = createBrowserRouter([
     element: <route.Form />
   },
   {
-    // TODO: This is a test route to test the Home component.
     path: '/home',
     element: <route.Home />
   },

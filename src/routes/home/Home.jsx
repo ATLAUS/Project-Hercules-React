@@ -1,16 +1,16 @@
 import './Home.scss'
-import * as components from '../../components'
-import { useNavigate } from 'react-router-dom'
+import * as components from './components'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export const Home = () => {
-  const navigate = useNavigate()
+  const { user } = useAuth0()
 
   return (
     <>
       <main>
         <h1>Home</h1>
-        <button onClick={() => navigate('/form')}>Form</button>
-        <button onClick={() => navigate('/workout')}>Workout</button>
+        <img src={user.picture} alt="profile-picture" />
+        <components.WorkoutDisplay />
       </main>
     </>
   )
