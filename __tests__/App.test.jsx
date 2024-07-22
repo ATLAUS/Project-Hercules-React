@@ -1,10 +1,8 @@
-import { describe, test, expect, afterEach } from 'vitest'
-import { cleanup, render, screen, waitFor } from '@testing-library/react'
+import { describe, test, expect } from 'vitest'
+import { render, screen, waitFor } from '@testing-library/react'
 import { App } from '../src/App'
 
 describe('App', () => {
-  afterEach(cleanup)
-
   test('should render title', () => {
     render(<App />)
 
@@ -38,8 +36,6 @@ describe('App', () => {
 
 // TODO: need to update these navigation tests.
 describe('App navigation', () => {
-  afterEach(cleanup)
-
   //TODO : Figure out how to reset test to Landing page.
   test('should navigate to home page', async () => {
     render(<App />)
