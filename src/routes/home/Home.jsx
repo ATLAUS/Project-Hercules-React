@@ -7,7 +7,7 @@ export const Home = () => {
 
   return (
     <>
-      <main className="home-page">
+      <div className="home-page">
         <div className="user-display">
           {!user ? (
             // TODO: Replace with default profile picture.
@@ -22,7 +22,7 @@ export const Home = () => {
         </div>
         <h1>Workouts</h1>
         <components.WorkoutDisplay />
-      </main>
+      </div>
     </>
   )
 }
