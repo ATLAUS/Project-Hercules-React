@@ -1,6 +1,6 @@
 import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
-import { LoginButton } from '../../src/components'
+import { LoginButton } from '../../src/shared/components'
 import { useAuth0 } from '@auth0/auth0-react'
 
 vi.mock('@auth0/auth0-react')
