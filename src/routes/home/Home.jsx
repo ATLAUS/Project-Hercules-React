@@ -7,14 +7,20 @@ export const Home = () => {
 
   return (
     <>
-      <main>
-        <h1>Home</h1>
-        {!user ? (
-          <p>Loading...</p>
-        ) : (
-          <img src={user.picture} alt="profile-picture" />
-        )}
-
+      <main className="home-page">
+        <div className="user-display">
+          {!user ? (
+            // TODO: Replace with default profile picture.
+            <p>Loading...</p>
+          ) : (
+            <img
+              className="profile-picture"
+              src={user.picture}
+              alt="profile-picture"
+            />
+          )}
+        </div>
+        <h1>Workouts</h1>
         <components.WorkoutDisplay />
       </main>
     </>
