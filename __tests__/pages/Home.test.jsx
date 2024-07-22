@@ -1,5 +1,5 @@
-import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
-import { cleanup, render, screen } from '@testing-library/react'
+import { describe, test, expect, vi, beforeEach } from 'vitest'
+import { render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Home } from '../../src/routes'
 
@@ -16,8 +16,6 @@ describe('Home page component with a user defined', () => {
   beforeEach(() => {
     vi.clearAllMocks()
   })
-
-  afterEach(cleanup)
 
   test('should render home page', () => {
     render(
