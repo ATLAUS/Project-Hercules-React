@@ -8,6 +8,7 @@ describe('Home page component with a user defined', () => {
   vi.mock('@auth0/auth0-react', () => ({
     useAuth0: () => ({
       user: {
+        name: 'Chravis',
         picture: 'https://example.com/profile-picture.png'
       }
     })
@@ -49,7 +50,9 @@ describe('Home page component with a user defined', () => {
     menuButton.click()
 
     await waitFor(() => {
-      expect(screen.getByText(/Menu Content Here/i)).toBeInTheDocument()
+      expect(screen.getByText(/welcome chravis/i)).toBeInTheDocument()
+      expect(screen.getByTestId('add-workout-button')).toBeInTheDocument()
+      expect(screen.getByTestId('logout-button')).toBeInTheDocument()
     })
   })
 })

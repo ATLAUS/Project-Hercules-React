@@ -33,12 +33,14 @@ $temp-volt: #CEFF00;
   border-radius: 50%;
 }
 
+// TODO: Add media queries for desktop devices.
+// Title: 5% Items: 90% Footer: 5%
 .side-bar-title {
-  height: 5%
+  height: 10%
 }
 
 .side-bar-items {
-  height: 90%;
+  height: 85%;
 }
 
 .side-bar-footer {

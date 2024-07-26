@@ -53,6 +53,7 @@ export const Home = () => {
           <components.WorkoutDisplay />
         </section>
 
+        {/* TODO: Move side-bar to its own component. */}
         <Drawer
           className="side-bar"
           open={open}
@@ -60,12 +61,12 @@ export const Home = () => {
           onClose={() => handleOpen(open)}
         >
           <div className="side-bar-title">
-            {!user ? <h2>Welcome Chravis</h2> : <h2>{user.name}</h2>}
+            {!user ? <h2>Welcome Chravis</h2> : <h2>Welcome {user.name}</h2>}
           </div>
           <List className="side-bar-items">
             {['Generate Workout'].map((text, idx) => (
               <ListItem key={idx} disablePadding>
-                <ListItemButton>
+                <ListItemButton data-testid="add-workout-button">
                   <ListItemIcon>
                     <AddIcon />
                   </ListItemIcon>
@@ -77,7 +78,7 @@ export const Home = () => {
           <Divider />
           <div className="side-bar-footer">
             <Tooltip title="Logout">
-              <Button color="error">
+              <Button color="error" data-testid="logout-button">
                 <LogoutIcon />
               </Button>
             </Tooltip>
