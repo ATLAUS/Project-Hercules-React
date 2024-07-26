@@ -39,6 +39,11 @@ describe('Home page component with a user defined', () => {
     expect(screen.getByRole('img')).toBeInTheDocument()
   })
 
+  // TODO: Implement this test.
+  // test('should not render the drawer by default', () => {
+
+  // })
+
   test('should open the drawer', async () => {
     render(
       <MemoryRouter initialEntries={['/home']}>
@@ -55,4 +60,9 @@ describe('Home page component with a user defined', () => {
       expect(screen.getByTestId('logout-button')).toBeInTheDocument()
     })
   })
+
+  // TODO: Implement this test.
+  // test('should hide the drawer', async () => {
+
+  // })
 })
