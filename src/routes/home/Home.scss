@@ -33,6 +33,17 @@ $temp-volt: #CEFF00;
   border-radius: 50%;
 }
 
-.MuiDrawer-root {
-  width: 45%;
+.side-bar-title {
+  height: 5%
+}
+
+.side-bar-items {
+  height: 90%;
+}
+
+.side-bar-footer {
+  height: 5%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }

@@ -2,8 +2,21 @@ import { useState } from 'react'
 import './Home.scss'
 import * as components from './components'
 import { useAuth0 } from '@auth0/auth0-react'
-import { Drawer, Button, Avatar } from '@mui/material'
+import {
+  Drawer,
+  Button,
+  Avatar,
+  Tooltip,
+  Divider,
+  List,
+  ListItem,
+  ListItemButton,
+  ListItemText,
+  ListItemIcon
+} from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
+import LogoutIcon from '@mui/icons-material/Logout'
+import AddIcon from '@mui/icons-material/Add'
 
 export const Home = () => {
   const [open, setOpen] = useState(false)
@@ -17,9 +30,11 @@ export const Home = () => {
     <>
       <div className="home-page">
         <section className="nav">
-          <Button onClick={() => handleOpen(open)} data-testid="menu-button">
-            <MenuIcon sx={{ color: '#CEFF00' }} />
-          </Button>
+          <Tooltip title="Menu">
+            <Button onClick={() => handleOpen(open)} data-testid="menu-button">
+              <MenuIcon sx={{ color: '#CEFF00' }} />
+            </Button>
+          </Tooltip>
         </section>
         <section className="content">
           <div className="user-display">
@@ -44,7 +59,29 @@ export const Home = () => {
           PaperProps={{ sx: { width: '45%' } }}
           onClose={() => handleOpen(open)}
         >
-          <p>Menu Content Here</p>
+          <div className="side-bar-title">
+            {!user ? <h2>Welcome Chravis</h2> : <h2>{user.name}</h2>}
+          </div>
+          <List className="side-bar-items">
+            {['Generate Workout'].map((text, idx) => (
+              <ListItem key={idx} disablePadding>
+                <ListItemButton>
+                  <ListItemIcon>
+                    <AddIcon />
+                  </ListItemIcon>
+                  <ListItemText primary={text} />
+                </ListItemButton>
+              </ListItem>
+            ))}
+          </List>
+          <Divider />
+          <div className="side-bar-footer">
+            <Tooltip title="Logout">
+              <Button color="error">
+                <LogoutIcon />
+              </Button>
+            </Tooltip>
+          </div>
         </Drawer>
       </div>
     </>
