@@ -12,4 +12,14 @@ describe('BottomSheet component', () => {
     const bottomSheetTitle = screen.getByText(/generate a workout/i)
     expect(bottomSheetTitle).toBeInTheDocument()
   })
+
+  test('does not render the component', () => {
+    const showBottomSheet = vi.fn()
+    render(
+      <BottomSheet bottomSheetView={false} showBottomSheet={showBottomSheet} />
+    )
+
+    const bottomSheetTitle = screen.queryByText(/generate a workout/i)
+    expect(bottomSheetTitle).not.toBeInTheDocument()
+  })
 })

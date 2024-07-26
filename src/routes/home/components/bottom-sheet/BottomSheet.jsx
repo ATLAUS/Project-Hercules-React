@@ -10,7 +10,7 @@ export const BottomSheet = ({ bottomSheetView, showBottomSheet }) => {
         anchor="bottom"
         PaperProps={{
           sx: {
-            height: '40%',
+            height: '60%',
             borderTopLeftRadius: 10,
             borderTopRightRadius: 10
           }
