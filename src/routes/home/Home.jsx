@@ -22,6 +22,7 @@ export const Home = () => {
   return (
     <>
       <div className="home-page">
+        {/* TODO: Nav should be sticky. */}
         <nav className="nav">
           <Tooltip title="Menu">
             <Button onClick={() => handleOpen(open)} data-testid="menu-button">
@@ -40,8 +41,7 @@ export const Home = () => {
         <section className="content">
           <div className="user-display">
             {!user ? (
-              // TODO: Pass username as child to display their name.
-              <Avatar alt="user-avatar" sx={{ width: 96, height: 96 }}></Avatar>
+              <Avatar alt="user-avatar" sx={{ width: 96, height: 96 }} />
             ) : (
               <img
                 className="profile-picture"
