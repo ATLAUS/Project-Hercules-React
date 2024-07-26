@@ -2,8 +2,7 @@ import { useState } from 'react'
 import './Home.scss'
 import * as components from './components'
 import { useAuth0 } from '@auth0/auth0-react'
-import { Drawer } from '@mui/material'
-import { Button } from '@mui/material'
+import { Drawer, Button, Avatar } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 
 export const Home = () => {
@@ -17,31 +16,36 @@ export const Home = () => {
   return (
     <>
       <div className="home-page">
-        <Button onClick={() => handleOpen(open)}>
-          <MenuIcon />
-        </Button>
+        <section className="nav">
+          <Button onClick={() => handleOpen(open)}>
+            <MenuIcon />
+          </Button>
+        </section>
+        <section className="content">
+          <div className="user-display">
+            {!user ? (
+              // TODO: Pass username as child to display their name.
+              <Avatar alt="user-avatar" sx={{ width: 56, height: 56 }}></Avatar>
+            ) : (
+              <img
+                className="profile-picture"
+                src={user.picture}
+                alt="profile-picture"
+              />
+            )}
+          </div>
+          <h1>Workouts</h1>
+          <components.WorkoutDisplay />
+        </section>
+
         <Drawer
           className="side-bar"
           open={open}
           PaperProps={{ sx: { width: '45%' } }}
           onClose={() => handleOpen(open)}
         >
-          <p>Menu Here</p>
+          <p>Menu Content Here</p>
         </Drawer>
-        <div className="user-display">
-          {!user ? (
-            // TODO: Replace with default profile picture.
-            <p>Loading...</p>
-          ) : (
-            <img
-              className="profile-picture"
-              src={user.picture}
-              alt="profile-picture"
-            />
-          )}
-        </div>
-        <h1>Workouts</h1>
-        <components.WorkoutDisplay />
       </div>
     </>
   )
