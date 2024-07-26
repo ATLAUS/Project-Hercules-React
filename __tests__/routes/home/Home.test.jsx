@@ -45,11 +45,11 @@ describe('Home page component with a user defined', () => {
       </MemoryRouter>
     )
 
-    const menuButton = screen.getByRole('button')
+    const menuButton = screen.getByTestId('menu-button')
     menuButton.click()
 
     await waitFor(() => {
-      expect(screen.getByText(/Menu Content Here/i)).toBeInTheDocument
+      expect(screen.getByText(/Menu Content Here/i)).toBeInTheDocument()
     })
   })
 })

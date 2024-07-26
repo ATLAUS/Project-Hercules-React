@@ -17,7 +17,7 @@ export const Home = () => {
     <>
       <div className="home-page">
         <section className="nav">
-          <Button onClick={() => handleOpen(open)}>
+          <Button onClick={() => handleOpen(open)} data-testid="menu-button">
             <MenuIcon />
           </Button>
         </section>
