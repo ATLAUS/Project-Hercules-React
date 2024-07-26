@@ -3,6 +3,8 @@ import './Home.scss'
 import * as components from './components'
 import { useAuth0 } from '@auth0/auth0-react'
 import { Drawer } from '@mui/material'
+import { Button } from '@mui/material'
+import MenuIcon from '@mui/icons-material/Menu'
 
 export const Home = () => {
   const [open, setOpen] = useState(false)
@@ -15,7 +17,9 @@ export const Home = () => {
   return (
     <>
       <div className="home-page">
-        <button onClick={() => handleOpen(open)}>Menu</button>
+        <Button onClick={() => handleOpen(open)}>
+          <MenuIcon />
+        </Button>
         <Drawer
           className="side-bar"
           open={open}
