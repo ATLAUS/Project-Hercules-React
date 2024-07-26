@@ -2,21 +2,8 @@ import { useState } from 'react'
 import './Home.scss'
 import * as components from './components'
 import { useAuth0 } from '@auth0/auth0-react'
-import {
-  Drawer,
-  Button,
-  Avatar,
-  Tooltip,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  ListItemIcon
-} from '@mui/material'
+import { Button, Avatar, Tooltip } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import LogoutIcon from '@mui/icons-material/Logout'
-import AddIcon from '@mui/icons-material/Add'
 
 export const Home = () => {
   const [open, setOpen] = useState(false)
@@ -52,39 +39,8 @@ export const Home = () => {
           <h1>Workouts</h1>
           <components.WorkoutDisplay />
         </section>
-
-        {/* TODO: Move side-bar to its own component. */}
-        <Drawer
-          className="side-bar"
-          open={open}
-          PaperProps={{ sx: { width: '45%' } }}
-          onClose={() => handleOpen(open)}
-        >
-          <div className="side-bar-title">
-            {!user ? <h2>Welcome Chravis</h2> : <h2>Welcome {user.name}</h2>}
-          </div>
-          <List className="side-bar-items">
-            {['Generate Workout'].map((text, idx) => (
-              <ListItem key={idx} disablePadding>
-                <ListItemButton data-testid="add-workout-button">
-                  <ListItemIcon>
-                    <AddIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <div className="side-bar-footer">
-            <Tooltip title="Logout">
-              <Button color="error" data-testid="logout-button">
-                <LogoutIcon />
-              </Button>
-            </Tooltip>
-          </div>
-        </Drawer>
       </div>
+      <components.SideBar open={open} handleOpen={handleOpen} user={user} />
     </>
   )
 }

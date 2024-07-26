@@ -32,20 +32,3 @@ $temp-volt: #CEFF00;
 .profile-picture {
   border-radius: 50%;
 }
-
-// TODO: Add media queries for desktop devices.
-// Title: 5% Items: 90% Footer: 5%
-.side-bar-title {
-  height: 10%
-}
-
-.side-bar-items {
-  height: 85%;
-}
-
-.side-bar-footer {
-  height: 5%;
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
