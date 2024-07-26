@@ -40,11 +40,11 @@ describe('Home page component with a user defined', () => {
   })
 
   // TODO: Implement this test.
-  // test('should not render the drawer by default', () => {
+  // test('should not render the side bar or bottom sheet by default', () => {
 
   // })
 
-  test('should open the drawer', async () => {
+  test('should open the side bar', async () => {
     render(
       <MemoryRouter initialEntries={['/home']}>
         <Home />
@@ -56,13 +56,35 @@ describe('Home page component with a user defined', () => {
 
     await waitFor(() => {
       expect(screen.getByText(/welcome chravis/i)).toBeInTheDocument()
-      expect(screen.getByTestId('add-workout-button')).toBeInTheDocument()
+      expect(
+        screen.getByTestId('sidebar-add-workout-button')
+      ).toBeInTheDocument()
       expect(screen.getByTestId('logout-button')).toBeInTheDocument()
     })
   })
 
   // TODO: Implement this test.
-  // test('should hide the drawer', async () => {
+  // test('should hide the side bar', async () => {
+
+  // })
+
+  test('should open the bottom sheet', async () => {
+    render(
+      <MemoryRouter initialEntries={['/home']}>
+        <Home />
+      </MemoryRouter>
+    )
+
+    const addWorkoutButton = screen.getByTestId('add-workout-button')
+    addWorkoutButton.click()
+
+    await waitFor(() => {
+      expect(screen.getByText(/generate a workout/i)).toBeInTheDocument()
+    })
+  })
+
+  // TODO: Implement this test.
+  // test('should hide the bottom sheet', async () => {
 
   // })
 })

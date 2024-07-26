@@ -28,7 +28,7 @@ export const SideBar = ({ open, handleOpen, user }) => {
         <List className="side-bar-items">
           {['Generate Workout'].map((text, idx) => (
             <ListItem key={idx} disablePadding>
-              <ListItemButton data-testid="add-workout-button">
+              <ListItemButton data-testid="sidebar-add-workout-button">
                 <ListItemIcon>
                   <AddIcon />
                 </ListItemIcon>
