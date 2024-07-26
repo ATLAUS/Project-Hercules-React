@@ -1,5 +1,5 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
-import { render, screen } from '@testing-library/react'
+import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { Home } from '../../../src/routes'
 
@@ -36,5 +36,20 @@ describe('Home page component with a user defined', () => {
     )
 
     expect(screen.getByRole('img')).toBeInTheDocument()
+  })
+
+  test('should open the drawer', async () => {
+    render(
+      <MemoryRouter initialEntries={['/home']}>
+        <Home />
+      </MemoryRouter>
+    )
+
+    const menuButton = screen.getByRole('button')
+    menuButton.click()
+
+    await waitFor(() => {
+      expect(screen.getByText(/Menu Content Here/i)).toBeInTheDocument
+    })
   })
 })
