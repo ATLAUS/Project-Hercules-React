@@ -1,5 +1,6 @@
 import './BottomSheet.scss'
-import { Drawer, Divider } from '@mui/material'
+import Drawer from '@mui/material/Drawer'
+import Divider from '@mui/material/Divider'
 
 export const BottomSheet = ({ bottomSheetView, showBottomSheet }) => {
   return (
