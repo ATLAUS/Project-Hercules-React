@@ -1,5 +1,5 @@
 import { describe, expect, test, vi } from 'vitest'
-import { fetchUserDetails } from '../../src/services/fetchUserDetails'
+import { fetchUserDetails } from '../../src/services/userService'
 
 // eslint-disable-next-line no-undef
 global.fetch = vi.fn()
