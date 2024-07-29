@@ -25,7 +25,7 @@ describe('Home page component with a user defined', () => {
       </MemoryRouter>
     )
 
-    const homeText = screen.getByText(/Workouts/i)
+    const homeText = screen.getByRole('heading', { name: /workouts/i })
     expect(homeText).toBeInTheDocument()
   })
 

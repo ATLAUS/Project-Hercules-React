@@ -5,10 +5,10 @@ import { WorkoutDisplay } from '../../../../../src/routes/home/components/'
 
 describe('WorkoutDisplay component', () => {
   {
-    test('should render workout display', () => {
-      render(<WorkoutDisplay />)
+    test('should render no workouts message', () => {
+      render(<WorkoutDisplay workouts={null} />)
 
-      const workoutDisplay = screen.getByText(/Workout display goes here/i)
+      const workoutDisplay = screen.getByText(/no workouts to display./i)
       expect(workoutDisplay).toBeInTheDocument()
     })
   }
