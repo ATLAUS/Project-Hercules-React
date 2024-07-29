@@ -17,7 +17,7 @@ export const SideBar = ({ open, handleOpen, user }) => {
       <Drawer
         className="side-bar"
         open={open}
-        PaperProps={{ sx: { width: '45%' } }}
+        PaperProps={{ sx: { width: '60%' } }}
         onClose={() => handleOpen(open)}
       >
         <div className="side-bar-title">
