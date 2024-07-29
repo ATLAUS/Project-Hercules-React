@@ -42,7 +42,7 @@ export const Home = () => {
         <section className="content">
           <div className="user-display">
             {!user ? (
-              <Avatar alt="user-avatar" sx={{ width: 96, height: 96 }} />
+              <Avatar alt="user-avatar" sx={{ width: 110, height: 110 }} />
             ) : (
               <img
                 className="profile-picture"

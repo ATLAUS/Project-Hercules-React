@@ -29,6 +29,11 @@ $temp-volt: #CEFF00;
   justify-content: space-between;
 }
 
+.user-display {
+  max-width: 110px;
+  max-height: 110px;
+}
+
 .profile-picture {
   border-radius: 50%;
   height: 110px;
