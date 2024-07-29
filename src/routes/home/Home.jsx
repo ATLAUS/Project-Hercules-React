@@ -7,11 +7,17 @@ import Avatar from '@mui/material/Avatar'
 import Tooltip from '@mui/material/Tooltip'
 import MenuIcon from '@mui/icons-material/Menu'
 import AddIcon from '@mui/icons-material/Add'
+import Fab from '@mui/material/Fab'
 
 export const Home = () => {
   const [open, setOpen] = useState(false)
   const [bottomSheetView, setBottomSheetView] = useState(false)
-  const [workouts] = useState(null)
+  const [workouts] = useState([
+    { id: 1, date: '07/27/24', type: 'Strength Training', focus: 'Upper' },
+    { id: 2, date: '07/29/24', type: 'Strength Training', focus: 'Lower' },
+    { id: 3, date: '08/01/24', type: 'Strength Training', focus: 'Upper' },
+    { id: 4, date: '08/01/24', type: 'Strength Training', focus: 'Upper' }
+  ])
   const { user } = useAuth0()
 
   const handleOpen = (viewValue) => {
@@ -45,18 +51,24 @@ export const Home = () => {
               />
             )}
           </div>
-          <Button
-            onClick={() => showBottomSheet(bottomSheetView)}
-            startIcon={<AddIcon />}
-            sx={{ background: '#CEFF00', borderRadius: 15 }}
-            disableElevation
-            data-testid="add-workout-button"
-          >
-            Add Workout
-          </Button>
-          <h1>Workouts</h1>
+          <h1 className="workouts-title">Workouts</h1>
           <components.WorkoutDisplay workouts={workouts} />
         </section>
+        <Fab
+          onClick={() => showBottomSheet(bottomSheetView)}
+          color="primary"
+          aria-label="add"
+          sx={{
+            position: 'fixed',
+            right: 16,
+            bottom: 16,
+            background: '#CEFF00',
+            color: '#024bb9'
+          }}
+          data-testid="add-workout-fab"
+        >
+          <AddIcon />
+        </Fab>
       </div>
 
       {/* Drawers */}

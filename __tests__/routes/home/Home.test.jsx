@@ -75,7 +75,7 @@ describe('Home page component with a user defined', () => {
       </MemoryRouter>
     )
 
-    const addWorkoutButton = screen.getByTestId('add-workout-button')
+    const addWorkoutButton = screen.getByTestId('add-workout-fab')
     addWorkoutButton.click()
 
     await waitFor(() => {
