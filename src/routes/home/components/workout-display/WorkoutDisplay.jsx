@@ -1,8 +1,6 @@
-export const WorkoutDisplay = () => {
+export const WorkoutDisplay = ({ workouts }) => {
   return (
     // TODO: Implement actual workout display.
-    <>
-      <p>Workout display goes here</p>
-    </>
+    <>{!workouts ? <p>No workouts to display.</p> : <p>Workouts!</p>}</>
   )
 }

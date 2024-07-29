@@ -11,6 +11,7 @@ import AddIcon from '@mui/icons-material/Add'
 export const Home = () => {
   const [open, setOpen] = useState(false)
   const [bottomSheetView, setBottomSheetView] = useState(false)
+  const [workouts] = useState(null)
   const { user } = useAuth0()
 
   const handleOpen = (viewValue) => {
@@ -54,7 +55,7 @@ export const Home = () => {
             Add Workout
           </Button>
           <h1>Workouts</h1>
-          <components.WorkoutDisplay />
+          <components.WorkoutDisplay workouts={workouts} />
         </section>
       </div>
 
