@@ -15,6 +15,10 @@ export const WorkoutDisplay = ({ workouts }) => {
           <p>No workouts to display.</p>
         ) : (
           workouts.map((workout) => (
+            // TODO:
+            // 1. Make the cards smaller.
+            // 2. Adjust the layout
+            // 3. Add some sort of media to the card.
             <Card
               className="workout-card"
               key={workout.id}
