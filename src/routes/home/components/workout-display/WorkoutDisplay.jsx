@@ -15,7 +15,12 @@ export const WorkoutDisplay = ({ workouts }) => {
           <p>No workouts to display.</p>
         ) : (
           workouts.map((workout) => (
-            <Card className="workout-card" key={workout.id} variant="outlined">
+            <Card
+              className="workout-card"
+              key={workout.id}
+              variant="outlined"
+              data-testid="workout-card"
+            >
               <CardHeader title={workout.focus} />
               <CardContent>
                 <Typography color="text.secondary">{workout.date}</Typography>
