@@ -2,45 +2,47 @@ import { useState } from 'react'
 import './Home.scss'
 import * as components from './components'
 import { useAuth0 } from '@auth0/auth0-react'
-import {
-  Drawer,
-  Button,
-  Avatar,
-  Tooltip,
-  Divider,
-  List,
-  ListItem,
-  ListItemButton,
-  ListItemText,
-  ListItemIcon
-} from '@mui/material'
+import Button from '@mui/material/Button'
+import Avatar from '@mui/material/Avatar'
+import Tooltip from '@mui/material/Tooltip'
 import MenuIcon from '@mui/icons-material/Menu'
-import LogoutIcon from '@mui/icons-material/Logout'
 import AddIcon from '@mui/icons-material/Add'
+import Fab from '@mui/material/Fab'
 
 export const Home = () => {
   const [open, setOpen] = useState(false)
+  const [bottomSheetView, setBottomSheetView] = useState(false)
+  const [workouts] = useState([
+    { id: 1, date: '07/27/24', type: 'Strength Training', focus: 'Upper' },
+    { id: 2, date: '07/29/24', type: 'Strength Training', focus: 'Lower' },
+    { id: 3, date: '08/01/24', type: 'Strength Training', focus: 'Upper' },
+    { id: 4, date: '08/01/24', type: 'Strength Training', focus: 'Upper' }
+  ])
   const { user } = useAuth0()
 
   const handleOpen = (viewValue) => {
     setOpen(!viewValue)
   }
 
+  const showBottomSheet = (bottomSheetView) => {
+    setBottomSheetView(!bottomSheetView)
+  }
+
   return (
     <>
       <div className="home-page">
-        <section className="nav">
+        {/* TODO: Nav should be sticky. */}
+        <nav className="nav">
           <Tooltip title="Menu">
             <Button onClick={() => handleOpen(open)} data-testid="menu-button">
-              <MenuIcon sx={{ color: '#CEFF00' }} />
+              <MenuIcon fontSize="large" sx={{ color: '#CEFF00' }} />
             </Button>
           </Tooltip>
-        </section>
+        </nav>
         <section className="content">
           <div className="user-display">
             {!user ? (
-              // TODO: Pass username as child to display their name.
-              <Avatar alt="user-avatar" sx={{ width: 56, height: 56 }}></Avatar>
+              <Avatar alt="user-avatar" sx={{ width: 110, height: 110 }} />
             ) : (
               <img
                 className="profile-picture"
@@ -49,42 +51,32 @@ export const Home = () => {
               />
             )}
           </div>
-          <h1>Workouts</h1>
-          <components.WorkoutDisplay />
+          <h1 className="workouts-title">Workouts</h1>
+          <components.WorkoutDisplay workouts={workouts} />
         </section>
-
-        {/* TODO: Move side-bar to its own component. */}
-        <Drawer
-          className="side-bar"
-          open={open}
-          PaperProps={{ sx: { width: '45%' } }}
-          onClose={() => handleOpen(open)}
+        <Fab
+          onClick={() => showBottomSheet(bottomSheetView)}
+          color="primary"
+          aria-label="add"
+          sx={{
+            position: 'fixed',
+            right: 16,
+            bottom: 16,
+            background: '#CEFF00',
+            color: '#024bb9'
+          }}
+          data-testid="add-workout-fab"
         >
-          <div className="side-bar-title">
-            {!user ? <h2>Welcome Chravis</h2> : <h2>Welcome {user.name}</h2>}
-          </div>
-          <List className="side-bar-items">
-            {['Generate Workout'].map((text, idx) => (
-              <ListItem key={idx} disablePadding>
-                <ListItemButton data-testid="add-workout-button">
-                  <ListItemIcon>
-                    <AddIcon />
-                  </ListItemIcon>
-                  <ListItemText primary={text} />
-                </ListItemButton>
-              </ListItem>
-            ))}
-          </List>
-          <Divider />
-          <div className="side-bar-footer">
-            <Tooltip title="Logout">
-              <Button color="error" data-testid="logout-button">
-                <LogoutIcon />
-              </Button>
-            </Tooltip>
-          </div>
-        </Drawer>
+          <AddIcon />
+        </Fab>
       </div>
+
+      {/* Drawers */}
+      <components.SideBar open={open} handleOpen={handleOpen} user={user} />
+      <components.BottomSheet
+        bottomSheetView={bottomSheetView}
+        showBottomSheet={showBottomSheet}
+      />
     </>
   )
 }

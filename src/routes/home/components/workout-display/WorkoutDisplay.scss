@@ -1,0 +1,15 @@
+// TODO: Need to fix styles.
+.workout-display {
+  height: 75%;
+  width: 100%;
+  overflow-y: scroll;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+.workout-card {
+  height: 30%;
+  width: 70%;
+  margin: 15px auto;
+}
