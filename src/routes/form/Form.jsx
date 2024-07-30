@@ -47,9 +47,9 @@ export const Form = () => {
             onChange={handlelevel}
             aria-label="experience level"
           >
-            <ToggleButton value="beginner" aria-label="beginner">Beginner</ToggleButton>
-            <ToggleButton value="intermediate" aria-label="intermediate">Intermediate</ToggleButton>
-            <ToggleButton value="advanced" aria-label="advanced">Advanced</ToggleButton>
+            <ToggleButton value="beginner" aria-label="beginner" sx={{color: 'white', border: 'white 1px solid'}}>Beginner</ToggleButton>
+            <ToggleButton value="intermediate" aria-label="intermediate" sx={{color: 'white', border: 'white 1px solid'}}>Intermediate</ToggleButton>
+            <ToggleButton value="advanced" aria-label="advanced" sx={{color: 'white', border: 'white 1px solid'}}>Advanced</ToggleButton>
           </ToggleButtonGroup>
 
           <h2>Focus Area</h2>
@@ -59,9 +59,9 @@ export const Form = () => {
             onChange={handleFocus}
             aria-label="focus area"
           >
-            <ToggleButton value="upper" aria-label="upper body">Upper Body</ToggleButton>
-            <ToggleButton value="lower" aria-label="lower body">Lower Body</ToggleButton>
-            <ToggleButton value="full" aria-label="full body">Full Body</ToggleButton>
+            <ToggleButton value="upper" aria-label="upper body" sx={{color: 'white', border: 'white 1px solid'}}>Upper Body</ToggleButton>
+            <ToggleButton value="lower" aria-label="lower body" sx={{color: 'white', border: 'white 1px solid'}}>Lower Body</ToggleButton>
+            <ToggleButton value="full" aria-label="full body" sx={{color: 'white', border: 'white 1px solid'}}>Full Body</ToggleButton>
           </ToggleButtonGroup>
           <h2>Workout Type</h2>
           <ToggleButtonGroup
@@ -70,8 +70,8 @@ export const Form = () => {
             onChange={handleType}
             aria-label="workout type"
           >
-            <ToggleButton value="strength" aria-label="strength training">Strength</ToggleButton>
-            <ToggleButton value="body" aria-label="body building">Body Building</ToggleButton>
+            <ToggleButton value="strength" aria-label="strength training" sx={{color: 'white', border: 'white 1px solid'}}>Strength</ToggleButton>
+            <ToggleButton value="body" aria-label="body building" sx={{color: 'white', border: 'white 1px solid'}}>Body Building</ToggleButton>
           </ToggleButtonGroup>
         </form>
         <button onClick={() => navigate('/workout')}>Workout</button>
