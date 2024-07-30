@@ -2,13 +2,16 @@ import './Form.scss'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { ToggleButton, ToggleButtonGroup } from '@mui/material'
-
-
+import { useAuth0 } from '@auth0/auth0-react'
+import { fetchNewGeminiWorkout } from '../../services/GeminiService'
 
 export const Form = () => {
   const [focusArea, setFocusArea] = useState('')
   const [type, setType] = useState('')
   const [level, setLevel] = useState('')
+
+  const { user, getAccessTokenSilently } =
+  useAuth0()
 
   const navigate = useNavigate()
 
@@ -28,7 +31,14 @@ export const Form = () => {
     e.preventDefault()
   
     try {
-      
+      const accessToken = await getAccessTokenSilently({
+        authorizationParams: {
+          audience: 'http://localhost:3001'
+        }
+      })
+
+      const workout = await fetchNewGeminiWorkout(accessToken, user, focusArea, type, level)
+      console.log(workout)
     } catch (error) {
       console.log("error: ", error)
     }
@@ -73,6 +83,8 @@ export const Form = () => {
             <ToggleButton value="strength" aria-label="strength training" sx={{color: 'white', border: 'white 1px solid'}}>Strength</ToggleButton>
             <ToggleButton value="body" aria-label="body building" sx={{color: 'white', border: 'white 1px solid'}}>Body Building</ToggleButton>
           </ToggleButtonGroup>
+
+          <button type="submit">Submit</button>
         </form>
         <button onClick={() => navigate('/workout')}>Workout</button>
       </main>
