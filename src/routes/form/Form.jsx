@@ -50,7 +50,7 @@ export const Form = () => {
     <>
       <main>
         <h1>Create Workout</h1>
-        <form onSubmit={submitHandler}>
+        <form onSubmit={submitHandler} data-testid="workout-form">
 
           <h2>Experience Level</h2>
           <ToggleButtonGroup
