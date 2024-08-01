@@ -14,7 +14,7 @@ export const Home = () => {
   const [bottomSheetView, setBottomSheetView] = useState(false)
   const [workouts] = useState([
     { _id: 1, date: '07/27/24', type: 'Strength Training', focus: 'Upper' },
-    { _id: 2, date: '08/01/24', type: 'Strength Training', focus: 'Upper' },
+    { _id: 2, date: '08/01/24', type: 'Strength Training', focus: 'Full' },
     { _id: 3, date: '07/29/24', type: 'Strength Training', focus: 'Lower' },
     { _id: 4, date: '08/01/24', type: 'Strength Training', focus: 'Upper' },
     { _id: 5, date: '07/29/24', type: 'Strength Training', focus: 'Lower' }
@@ -52,7 +52,7 @@ export const Home = () => {
               />
             )}
           </div>
-          <h1 className="workouts-title">Workouts</h1>
+          <h1 className="workouts-title">WORKOUTS</h1>
           <components.WorkoutDisplay workouts={workouts} />
         </section>
         <Fab
@@ -64,7 +64,7 @@ export const Home = () => {
             right: 16,
             bottom: 16,
             backgroundColor: '#efefef',
-            color: '#232933'
+            color: '#0167ff'
           }}
           data-testid="add-workout-fab"
         >
