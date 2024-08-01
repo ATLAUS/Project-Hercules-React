@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
 import CardActions from '@mui/material/CardActions'
 import IconButton from '@mui/material/IconButton'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 
 export const WorkoutDisplay = ({ workouts }) => {
   return (
@@ -46,7 +46,7 @@ export const WorkoutDisplay = ({ workouts }) => {
                     console.log('workout %s was clicked', workout._id)
                   }}
                 >
-                  <MoreVertIcon />
+                  <ArrowForwardIosIcon />
                 </IconButton>
               </CardActions>
             </Card>
