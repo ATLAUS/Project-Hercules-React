@@ -86,7 +86,7 @@ export const Form = () => {
             <ToggleButton value="body" aria-label="body building" sx={{color: 'white', border: 'white 1px solid'}}>Body Building</ToggleButton>
           </ToggleButtonGroup>
 
-          <button type="submit">Submit</button>
+          <button type="submit" data-testid="submit-button">Submit</button>
         </form>
         <button onClick={() => navigate('/workout')}>Workout</button>
       </main>
