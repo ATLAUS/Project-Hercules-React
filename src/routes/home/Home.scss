@@ -1,9 +1,12 @@
-$temp-blue: #024BB9;
+$temp-blue: #0167ff;
 $temp-volt: #CEFF00;
+
+$temp-white: #F2F7F2;
+$temp-black: #232933;
 
 .home-page {
   background-color: $temp-blue;
-  color: $temp-volt;
+  color: $temp-white;
   display: flex;
   align-items: center;
   justify-content: center;
