@@ -1,7 +1,7 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { Form }  from '../../../src/routes'
+import { Form } from '../../../src/routes'
 import { fetchNewGeminiWorkout } from '../../../src/services/GeminiService'
 
 vi.mock('@auth0/auth0-react', () => ({
@@ -23,7 +23,7 @@ describe('Form page', () => {
     vi.clearAllMocks()
   })
 
-  test('should render home page', () => {
+  test('should render form page', () => {
     render(
       <MemoryRouter initialEntries={['/form']}>
         <Form />
@@ -80,14 +80,14 @@ describe('Form page', () => {
 
     // Click Intermediate Button
     fireEvent.click(intermediateButton)
-    
+
     // Click Upper Body Button
     fireEvent.click(upperBodyButton)
 
     // Click Strength Button
     fireEvent.click(strengthButton)
 
-    const form = screen.getByTestId("workout-form")
+    const form = screen.getByTestId('workout-form')
 
     // Click Submit button
     fireEvent.submit(form)
@@ -95,11 +95,11 @@ describe('Form page', () => {
     await waitFor(() => {
       expect(mockFetchNewGeminiWorkout).toHaveBeenCalledTimes(1)
       expect(mockFetchNewGeminiWorkout).toHaveBeenCalledWith(
-        "fakeAccessToken", // accessToken
+        'fakeAccessToken', // accessToken
         expect.any(Object), // user
-        "upper",           // selectedFocusArea
-        'strength',        // selectedWorkoutType
-        'intermediate'     // selectedExperienceLevel
+        'upper', // selectedFocusArea
+        'strength', // selectedWorkoutType
+        'intermediate' // selectedExperienceLevel
       )
     })
   })

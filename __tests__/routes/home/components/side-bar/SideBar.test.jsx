@@ -26,4 +26,8 @@ describe('SideBar component', () => {
     const welcomeTest = screen.queryByText(/welcome test user/i)
     expect(welcomeTest).not.toBeInTheDocument()
   })
+
+  // TODO: Implement this test.
+  // test('should navigate away to the form page', () => {
+  // })
 })
