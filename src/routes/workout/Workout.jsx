@@ -1,9 +1,15 @@
 import './Workout.scss'
 import * as components from '../../shared/components'
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useLocation } from 'react-router-dom'
+import { useEffect } from 'react'
 
 export const Workout = () => {
   const navigate = useNavigate()
+  const location = useLocation()
+  const workout = location.state?.workout
+  useEffect(() => {
+    console.log(workout)
+  }, [workout])
 
   return (
     <>
