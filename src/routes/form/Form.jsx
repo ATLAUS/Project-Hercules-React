@@ -38,8 +38,6 @@ export const Form = () => {
       })
 
       const workout = await fetchNewGeminiWorkout(accessToken, user, focusArea, type, level)
-      // TODO: delete this console.log before pushing
-      console.log("Navigating away")
       navigate('/workout', { state: {workout: workout}})
     } catch (error) {
       console.log("error: ", error)
