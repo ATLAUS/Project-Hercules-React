@@ -17,11 +17,13 @@ export const Workout = () => {
       <section className="workout-display">
         {workoutResponse ? (
           <div>
-            <p>{workoutResponse.workout.level}</p>
-            <p>{workoutResponse.workout.focus_area} body</p>
-            <p>{workoutResponse.workout.type}</p>
+            <p data-testid="workout-level">{workoutResponse.workout.level}</p>
+            <p data-testid="workout-focus">
+              {workoutResponse.workout.focus_area} body
+            </p>
+            <p data-testid="workout-type">{workoutResponse.workout.type}</p>
             {/* TODO: Implement the exercise cards. */}
-            {workoutResponse.workout.exercises.map((exercise, idx) => (
+            {workoutResponse.workout?.exercises.map((exercise, idx) => (
               <p key={idx}>{exercise.name}</p>
             ))}
           </div>
