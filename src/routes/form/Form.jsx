@@ -46,7 +46,6 @@ export const Form = () => {
 
   return (
     <>
-      <main>
         <h1>Create Workout</h1>
         <form onSubmit={submitHandler} data-testid="workout-form">
 
@@ -87,7 +86,6 @@ export const Form = () => {
           <button type="submit" data-testid="submit-button">Submit</button>
         </form>
         <button onClick={() => navigate('/workout')}>Workout</button>
-      </main>
     </>
   )
 }
