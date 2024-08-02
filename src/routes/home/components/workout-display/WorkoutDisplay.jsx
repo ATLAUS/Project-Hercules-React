@@ -4,7 +4,8 @@ import Card from '@mui/material/Card'
 import CardContent from '@mui/material/CardContent'
 import CardHeader from '@mui/material/CardHeader'
 import CardActions from '@mui/material/CardActions'
-import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 
 export const WorkoutDisplay = ({ workouts }) => {
   return (
@@ -16,23 +17,38 @@ export const WorkoutDisplay = ({ workouts }) => {
         ) : (
           workouts.map((workout) => (
             // TODO:
-            // 1. Make the cards smaller.
-            // 2. Adjust the layout
+            // [X]1. Make the cards smaller.
+            // 2. Adjust the layout.
             // 3. Add some sort of media to the card.
             <Card
               className="workout-card"
-              key={workout.id}
+              key={workout._id}
               variant="outlined"
               data-testid="workout-card"
+              style={{
+                background: '#efefef',
+                color: '#232933',
+                borderRadius: 15
+              }}
             >
-              <CardHeader title={workout.focus} />
-              <CardContent>
-                <Typography color="text.secondary">{workout.date}</Typography>
+              <CardHeader
+                className="workout-card-title"
+                title={workout.focus.toUpperCase() + ' BODY'}
+              />
+              <CardContent className="workout-card-content">
                 <Typography>{workout.type}</Typography>
-                <CardActions>
-                  <Button size="small">View</Button>
-                </CardActions>
+                <Typography color="text.secondary">{workout.date}</Typography>
               </CardContent>
+              <CardActions className="btn-container">
+                <IconButton
+                  style={{ background: '#0167ff', color: '#fff' }}
+                  onClick={() => {
+                    console.log('workout %s was clicked', workout._id)
+                  }}
+                >
+                  <ArrowForwardIosIcon />
+                </IconButton>
+              </CardActions>
             </Card>
           ))
         )}

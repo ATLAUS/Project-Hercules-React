@@ -13,10 +13,11 @@ export const Home = () => {
   const [open, setOpen] = useState(false)
   const [bottomSheetView, setBottomSheetView] = useState(false)
   const [workouts] = useState([
-    { id: 1, date: '07/27/24', type: 'Strength Training', focus: 'Upper' },
-    { id: 2, date: '07/29/24', type: 'Strength Training', focus: 'Lower' },
-    { id: 3, date: '08/01/24', type: 'Strength Training', focus: 'Upper' },
-    { id: 4, date: '08/01/24', type: 'Strength Training', focus: 'Upper' }
+    { _id: 1, date: '07/27/24', type: 'Strength Training', focus: 'Upper' },
+    { _id: 2, date: '08/01/24', type: 'Strength Training', focus: 'Full' },
+    { _id: 3, date: '07/29/24', type: 'Strength Training', focus: 'Lower' },
+    { _id: 4, date: '08/01/24', type: 'Strength Training', focus: 'Upper' },
+    { _id: 5, date: '07/29/24', type: 'Strength Training', focus: 'Lower' }
   ])
   const { user } = useAuth0()
 
@@ -35,7 +36,7 @@ export const Home = () => {
         <nav className="nav">
           <Tooltip title="Menu">
             <Button onClick={() => handleOpen(open)} data-testid="menu-button">
-              <MenuIcon fontSize="large" sx={{ color: '#CEFF00' }} />
+              <MenuIcon fontSize="large" sx={{ color: '#efefef' }} />
             </Button>
           </Tooltip>
         </nav>
@@ -51,7 +52,7 @@ export const Home = () => {
               />
             )}
           </div>
-          <h1 className="workouts-title">Workouts</h1>
+          <h1 className="workouts-title">WORKOUTS</h1>
           <components.WorkoutDisplay workouts={workouts} />
         </section>
         <Fab
@@ -62,8 +63,8 @@ export const Home = () => {
             position: 'fixed',
             right: 16,
             bottom: 16,
-            background: '#CEFF00',
-            color: '#024bb9'
+            backgroundColor: '#efefef',
+            color: '#0167ff'
           }}
           data-testid="add-workout-fab"
         >
