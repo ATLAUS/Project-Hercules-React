@@ -48,6 +48,18 @@ describe('Workout page component with generated workout', () => {
 })
 
 describe('Workout page component with no workout', () => {
-  // TODO:Implement the test.
-  test('should render a message when there is no workout', async () => {})
+  test('should render a message when there is no workout', async () => {
+    useLocation.mockReturnValue({ state: null })
+
+    render(
+      <MemoryRouter>
+        <Workout />
+      </MemoryRouter>
+    )
+
+    await waitFor(() => {
+      const noWorkoutMessage = screen.getByText(/no workout to display/i)
+      expect(noWorkoutMessage).toBeInTheDocument()
+    })
+  })
 })
