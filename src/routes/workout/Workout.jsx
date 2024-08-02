@@ -1,21 +1,36 @@
 import './Workout.scss'
-import * as components from '../../shared/components'
-import { useNavigate, useLocation } from 'react-router-dom'
+import { useState } from 'react'
+import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
 
 export const Workout = () => {
-  const navigate = useNavigate()
+  const [workoutResponse, setWorkoutResponse] = useState(null)
   const location = useLocation()
-  const workout = location.state?.workout
+
   useEffect(() => {
-    console.log(workout)
-  }, [workout])
+    setWorkoutResponse(location.state?.workout)
+  }, [location.state])
 
   return (
     <>
-      <main>
-        <h1>Workout</h1>
-      </main>
+      <h1>Workout</h1>
+      <section className="workout-display">
+        {workoutResponse ? (
+          <div>
+            <p>{workoutResponse.workout.level}</p>
+            <p>{workoutResponse.workout.focus_area} body</p>
+            <p>{workoutResponse.workout.type}</p>
+            {/* TODO: Implement the exercise cards. */}
+            {workoutResponse.workout.exercises.map((exercise, idx) => (
+              <p key={idx}>{exercise.name}</p>
+            ))}
+          </div>
+        ) : (
+          <p>No workout to display</p>
+          // TODO: Implement a no workout screen or component that takes
+          // the user back to the form.
+        )}
+      </section>
     </>
   )
 }

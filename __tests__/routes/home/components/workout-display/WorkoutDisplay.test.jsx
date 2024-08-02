@@ -14,10 +14,10 @@ describe('WorkoutDisplay component with no workouts', () => {
 
 describe('WorkoutDisplay component with workouts', () => {
   const workouts = [
-    { id: 1, date: '07/27/24', type: 'Strength Training', focus: 'Upper' },
-    { id: 2, date: '07/29/24', type: 'Strength Training', focus: 'Lower' },
-    { id: 3, date: '08/01/24', type: 'Strength Training', focus: 'Upper' },
-    { id: 4, date: '08/01/24', type: 'Strength Training', focus: 'Upper' }
+    { _id: 1, date: '07/27/24', type: 'Strength Training', focus: 'Upper' },
+    { _id: 2, date: '07/29/24', type: 'Strength Training', focus: 'Lower' },
+    { _id: 3, date: '08/01/24', type: 'Strength Training', focus: 'Upper' },
+    { _id: 4, date: '08/01/24', type: 'Strength Training', focus: 'Upper' }
   ]
 
   test('should render workout cards', () => {

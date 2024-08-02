@@ -1,6 +1,7 @@
 import { describe, test, expect, vi } from 'vitest'
 import { render, screen } from '@testing-library/react'
 import { SideBar } from '../../../../../src/routes/home/components'
+import { MemoryRouter } from 'react-router-dom'
 
 describe('SideBar component', () => {
   test('should render the side bar', () => {
@@ -9,7 +10,11 @@ describe('SideBar component', () => {
       name: 'Test User'
     }
 
-    render(<SideBar open={true} onToggle={handleToggle} user={user} />)
+    render(
+      <MemoryRouter>
+        <SideBar open={true} onToggle={handleToggle} user={user} />
+      </MemoryRouter>
+    )
 
     const welcomeTest = screen.getByText(/welcome test user/i)
     expect(welcomeTest).toBeInTheDocument()
@@ -21,7 +26,11 @@ describe('SideBar component', () => {
       name: 'Test User'
     }
 
-    render(<SideBar open={false} onToggle={handleToggle} user={user} />)
+    render(
+      <MemoryRouter>
+        <SideBar open={false} onToggle={handleToggle} user={user} />
+      </MemoryRouter>
+    )
 
     const welcomeTest = screen.queryByText(/welcome test user/i)
     expect(welcomeTest).not.toBeInTheDocument()
