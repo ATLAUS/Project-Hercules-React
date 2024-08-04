@@ -2,6 +2,7 @@ import './Workout.scss'
 import { useState } from 'react'
 import { useLocation } from 'react-router-dom'
 import { useEffect } from 'react'
+import * as components from './components'
 
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
@@ -22,9 +23,8 @@ export const Workout = () => {
               {workoutResponse.workout.focus_area} body
             </p>
             <p data-testid="workout-type">{workoutResponse.workout.type}</p>
-            {/* TODO: Implement the exercise cards. */}
             {workoutResponse.workout?.exercises.map((exercise, idx) => (
-              <p key={idx}>{exercise.name}</p>
+              <components.ExerciseCard key={idx} exercise={exercise} />
             ))}
           </div>
         ) : (
