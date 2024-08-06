@@ -1,0 +1,16 @@
+.workout-display {
+  height: 100%;
+  width: 100%;
+}
+
+.workout-details {
+  height: 30%;
+  width: 100%;
+}
+
+.exercise-cards {
+  height: 70%;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}

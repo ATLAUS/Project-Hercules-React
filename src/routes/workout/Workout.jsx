@@ -14,19 +14,22 @@ export const Workout = () => {
 
   return (
     <>
-      <h1>Workout</h1>
       <section className="workout-display">
         {workoutResponse ? (
-          <div>
-            <p data-testid="workout-level">{workoutResponse.workout.level}</p>
-            <p data-testid="workout-focus">
-              {workoutResponse.workout.focus_area} body
-            </p>
-            <p data-testid="workout-type">{workoutResponse.workout.type}</p>
-            {workoutResponse.workout?.exercises.map((exercise, idx) => (
-              <components.ExerciseCard key={idx} exercise={exercise} />
-            ))}
-          </div>
+          <>
+            <section className="workout-details">
+              <p data-testid="workout-level">{workoutResponse.workout.level}</p>
+              <p data-testid="workout-focus">
+                {workoutResponse.workout.focus_area} body
+              </p>
+              <p data-testid="workout-type">{workoutResponse.workout.type}</p>
+            </section>
+            <section className="exercise-cards">
+              {workoutResponse.workout?.exercises.map((exercise, idx) => (
+                <components.ExerciseCard key={idx} exercise={exercise} />
+              ))}
+            </section>
+          </>
         ) : (
           <p>No workout to display</p>
           // TODO: Implement a no workout screen or component that takes
