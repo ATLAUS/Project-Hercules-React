@@ -14,7 +14,7 @@ export const Workout = () => {
 
   return (
     <>
-      <section className="workout-display">
+      <section className="generated-workout-display">
         {workoutResponse ? (
           <>
             <section className="workout-details">
@@ -31,9 +31,9 @@ export const Workout = () => {
             </section>
           </>
         ) : (
-          <p>No workout to display</p>
           // TODO: Implement a no workout screen or component that takes
           // the user back to the form.
+          <p>No workout to display</p>
         )}
       </section>
     </>
