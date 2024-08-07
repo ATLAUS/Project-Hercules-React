@@ -7,7 +7,11 @@ import Typography from '@mui/material/Typography'
 export const ExerciseCard = ({ exercise }) => {
   return (
     <>
-      <Card className="exercise-card" data-testid="exercise-card">
+      <Card
+        className="exercise-card"
+        data-testid="exercise-card"
+        style={{ borderRadius: 15, backgroundColor: '#efefef' }}
+      >
         <CardHeader title={exercise.name} />
         <CardContent>
           <Typography>R: {exercise.reps}</Typography>

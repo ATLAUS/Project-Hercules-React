@@ -1,13 +1,20 @@
 import './Workout.scss'
 import { useState } from 'react'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
 import { useEffect } from 'react'
-import Button from '@mui/material/Button'
+import IconButton from '@mui/material/IconButton'
+import SaveIcon from '@mui/icons-material/Save'
+import Fab from '@mui/material/Fab'
 import * as components from './components'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import HomeIcon from '@mui/icons-material/Home'
 
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
   const location = useLocation()
+  const navigate = useNavigate()
+
+  let className = workoutResponse?.workout.focus_area
 
   useEffect(() => {
     setWorkoutResponse(location.state?.workout)
@@ -18,7 +25,21 @@ export const Workout = () => {
       <section className="generated-workout-display">
         {workoutResponse ? (
           <>
-            <section className="workout-details">
+            <section className={`workout-details ${className}`}>
+              <nav className="nav-bar">
+                <IconButton
+                  style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
+                  onClick={() => navigate(-1)}
+                >
+                  <ArrowBackIcon style={{ color: 'white' }} />
+                </IconButton>
+                <IconButton
+                  style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
+                  onClick={() => navigate('/home')}
+                >
+                  <HomeIcon style={{ color: 'white' }} />
+                </IconButton>
+              </nav>
               <h1 className="focus-area" data-testid="workout-focus">
                 {workoutResponse.workout.focus_area.toUpperCase()} BODY
               </h1>
@@ -34,15 +55,24 @@ export const Workout = () => {
                 <components.ExerciseCard key={idx} exercise={exercise} />
               ))}
             </section>
+            <Fab
+              aria-label="save"
+              sx={{
+                position: 'fixed',
+                right: 16,
+                bottom: 16,
+                backgroundColor: '#efefef',
+                color: '#0167ff'
+              }}
+            >
+              <SaveIcon />
+            </Fab>
           </>
         ) : (
           // TODO: Implement a no workout screen or component that takes
           // the user back to the form.
           <p>No workout to display</p>
         )}
-        <div className="save-container">
-          <Button variant="contained">Save</Button>
-        </div>
       </section>
     </>
   )
