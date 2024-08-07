@@ -4,20 +4,61 @@ $temp-blue: #007bff;
   height: 100%;
   width: 100%;
   background-color: $temp-blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .workout-details {
-  height: 30%;
+  height: 20%;
   width: 100%;
   background-image: url("https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
   background-position: center;
   background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.focus-area {
+  font-size: 3em;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.workout-type {
+  font-size: 1.5em;
+}
+
+.exercise-display {
+  height: 75%;
+  width: 100%;
+  background-color: $temp-blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.workout-level {
+  font-size: 1.5em;
 }
 
 .exercise-cards {
-  height: 70%;
+  height: 90%;
   width: 100%;
   display: flex;
   flex-direction: column;
-  background-color: $temp-blue;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  overflow-y: auto;
+}
+
+.save-container {
+  height: 5%;
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
