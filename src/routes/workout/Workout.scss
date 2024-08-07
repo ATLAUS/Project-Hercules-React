@@ -28,25 +28,17 @@ $temp-blue: #007bff;
 }
 
 .workout-type {
-  font-size: 1.5em;
-}
-
-.exercise-display {
-  height: 75%;
-  width: 100%;
-  background-color: $temp-blue;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  font-size: 1em;
 }
 
 .workout-level {
-  font-size: 1.5em;
+  font-size: 1em;
 }
 
 .exercise-cards {
-  height: 90%;
-  width: 100%;
+  background-color: $temp-blue;
+  height: 75%;
+      width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;

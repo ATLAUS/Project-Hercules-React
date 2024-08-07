@@ -25,16 +25,14 @@ export const Workout = () => {
               <p className="workout-type" data-testid="workout-type">
                 {workoutResponse.workout.type} training
               </p>
-            </section>
-            <section className="exercise-display">
               <p className="workout-level" data-testid="workout-level">
                 {workoutResponse.workout.level}
               </p>
-              <div className="exercise-cards">
-                {workoutResponse.workout?.exercises.map((exercise, idx) => (
-                  <components.ExerciseCard key={idx} exercise={exercise} />
-                ))}
-              </div>
+            </section>
+            <section className="exercise-cards">
+              {workoutResponse.workout?.exercises.map((exercise, idx) => (
+                <components.ExerciseCard key={idx} exercise={exercise} />
+              ))}
             </section>
           </>
         ) : (
