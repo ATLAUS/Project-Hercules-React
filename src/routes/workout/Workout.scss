@@ -1,0 +1,65 @@
+$temp-blue: #007bff;
+
+.generated-workout-display {
+  height: 100%;
+  width: 100%;
+  background-color: $temp-blue;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.nav-bar {
+  display: flex;
+  width: 90%;
+  justify-content: space-between;
+}
+
+.full {
+ background-image: url("https://images.unsplash.com/photo-1520948013839-62020f374478?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.lower {
+  // background-image: url("https://images.unsplash.com/photo-1517963879433-6ad2b056d712?q=80&w=1770&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+  background-image: url("https://images.unsplash.com/photo-1526403646408-57b94dc15399?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.upper {
+  background-image: url("https://images.unsplash.com/photo-1583454110551-21f2fa2afe61?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D");
+}
+
+.workout-details {
+  height: 20%;
+  width: 100%;
+  background-position: bottom;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.focus-area {
+  font-size: 3.5em;
+  font-weight: 900;
+  font-style: italic;
+}
+
+.workout-type {
+  font-size: 1em;
+}
+
+.workout-level {
+  font-size: 1em;
+}
+
+.exercise-cards {
+  background-color: $temp-blue;
+  height: 80%;
+  width: 100%;
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}

@@ -57,7 +57,6 @@ export const Home = () => {
         </section>
         <Fab
           onClick={() => showBottomSheet(bottomSheetView)}
-          color="primary"
           aria-label="add"
           sx={{
             position: 'fixed',

@@ -10,8 +10,15 @@ import Divider from '@mui/material/Divider'
 import Tooltip from '@mui/material/Tooltip'
 import AddIcon from '@mui/icons-material/Add'
 import LogoutIcon from '@mui/icons-material/Logout'
+import { useNavigate } from 'react-router-dom'
 
 export const SideBar = ({ open, handleOpen, user }) => {
+  const navigate = useNavigate()
+
+  const navigateToFormPage = () => {
+    navigate('/form')
+  }
+
   return (
     <>
       <Drawer
@@ -26,7 +33,10 @@ export const SideBar = ({ open, handleOpen, user }) => {
         <List className="side-bar-items">
           {['Generate Workout'].map((text, idx) => (
             <ListItem key={idx} disablePadding>
-              <ListItemButton data-testid="sidebar-add-workout-button">
+              <ListItemButton
+                data-testid="sidebar-add-workout-button"
+                onClick={navigateToFormPage}
+              >
                 <ListItemIcon>
                   <AddIcon />
                 </ListItemIcon>
