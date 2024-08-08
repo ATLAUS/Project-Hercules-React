@@ -47,9 +47,14 @@ export const Form = () => {
   return (
     <>
       <div className='form-page'>
+
+
         
         <form onSubmit={submitHandler} data-testid="workout-form" className='workout-form'>
-          
+          <div>
+            <img alt="People working in a group" src="https://www.shutterstock.com/image-photo/weightlifting-fitness-people-kettle-bell-260nw-2306314323.jpg" />
+          </div>
+
           <div>
             <h1>Create Workout</h1>
             <div className='grid-item'>

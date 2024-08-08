@@ -5,7 +5,7 @@ $temp-black: #232933;
 .form-page {
     background-color: $temp-blue;
     height: 100vh;
-    width: 100%;
+    width: 100vw;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -20,5 +20,5 @@ $temp-black: #232933;
 }
 
 .grid-item {
-    margin: 10% 0% 10% 0%;
+    margin: 5% 0% 5% 0%;
 }
