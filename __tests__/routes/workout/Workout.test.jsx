@@ -43,6 +43,9 @@ describe('Workout page component with generated workout', () => {
 
       const workoutType = screen.getByTestId('workout-type')
       expect(workoutType).toHaveTextContent(/strength/i)
+
+      const exercises = screen.getAllByTestId('exercise-card')
+      expect(exercises.length).toBe(3)
     })
   })
 })
