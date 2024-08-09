@@ -52,7 +52,7 @@ export const Form = () => {
         
         <form onSubmit={submitHandler} data-testid="workout-form" className='workout-form'>
           <div>
-            <img alt="People working in a group" src="https://www.shutterstock.com/image-photo/weightlifting-fitness-people-kettle-bell-260nw-2306314323.jpg" />
+            <img alt="People working out in a group" src="https://www.shutterstock.com/image-photo/weightlifting-fitness-people-kettle-bell-260nw-2306314323.jpg" />
           </div>
 
           <div>

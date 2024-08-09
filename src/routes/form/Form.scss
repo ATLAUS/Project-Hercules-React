@@ -4,19 +4,22 @@ $temp-black: #232933;
 
 .form-page {
     background-color: $temp-blue;
-    height: 100vh;
-    width: 100vw;
+    color: $temp-white;
     display: flex;
-    justify-content: center;
     align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
 }
 
 .workout-form {
     height: 100%;
     width: 100%;
-    display: grid;
-    grid-template-columns: 1fr;
-    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
 }
 
 .grid-item {
