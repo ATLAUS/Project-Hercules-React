@@ -1,7 +1,7 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { fireEvent, render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { Form } from '../../../src/routes'
+import { Form } from '../../../src/routes/form/Form'
 import { fetchNewGeminiWorkout } from '../../../src/services/GeminiService'
 
 vi.mock('@auth0/auth0-react', () => ({

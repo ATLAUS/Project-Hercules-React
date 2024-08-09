@@ -1,16 +1,40 @@
 import { describe, test, expect, vi, beforeEach } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
-import { Home } from '../../../src/routes'
+import { Home } from '../../../src/routes/home/Home'
+import { UserContext } from '../../../src/App'
 
-// TODO: Stub the useAuth0 hook to show a user.
+const mockUserContextValue = {
+  setUserData: vi.fn()
+}
+
 describe('Home page component with a user defined', () => {
+  vi.mock('../../../src/services/UserService', () => ({
+    fetchUserDetails: vi.fn().mockResolvedValue({
+      user: {
+        _id: '123',
+        email: 'test@email.com',
+        nickname: 'test user',
+        userId: '123',
+        workouts: [
+          {
+            _id: '123',
+            name: 'test workout',
+            type: 'Strength Training',
+            focusArea: 'Upper'
+          }
+        ]
+      }
+    })
+  }))
+
   vi.mock('@auth0/auth0-react', () => ({
     useAuth0: () => ({
       user: {
         name: 'Chravis',
         picture: 'https://example.com/profile-picture.png'
-      }
+      },
+      getAccessTokenSilently: vi.fn().mockResolvedValue('access-token')
     })
   }))
 
@@ -20,9 +44,11 @@ describe('Home page component with a user defined', () => {
 
   test('should render home page', () => {
     render(
-      <MemoryRouter initialEntries={['/home']}>
-        <Home />
-      </MemoryRouter>
+      <UserContext.Provider value={mockUserContextValue}>
+        <MemoryRouter initialEntries={['/home']}>
+          <Home />
+        </MemoryRouter>
+      </UserContext.Provider>
     )
 
     const homeText = screen.getByRole('heading', { name: /workouts/i })
@@ -31,9 +57,11 @@ describe('Home page component with a user defined', () => {
 
   test('should render profile picture', () => {
     render(
-      <MemoryRouter initialEntries={['/home']}>
-        <Home />
-      </MemoryRouter>
+      <UserContext.Provider value={{ setUserData: vi.fn() }}>
+        <MemoryRouter initialEntries={['/home']}>
+          <Home />
+        </MemoryRouter>
+      </UserContext.Provider>
     )
 
     expect(screen.getByRole('img')).toBeInTheDocument()
@@ -46,9 +74,11 @@ describe('Home page component with a user defined', () => {
 
   test('should open the side bar', async () => {
     render(
-      <MemoryRouter initialEntries={['/home']}>
-        <Home />
-      </MemoryRouter>
+      <UserContext.Provider value={mockUserContextValue}>
+        <MemoryRouter initialEntries={['/home']}>
+          <Home />
+        </MemoryRouter>
+      </UserContext.Provider>
     )
 
     const menuButton = screen.getByTestId('menu-button')
@@ -70,9 +100,11 @@ describe('Home page component with a user defined', () => {
 
   test('should open the bottom sheet', async () => {
     render(
-      <MemoryRouter initialEntries={['/home']}>
-        <Home />
-      </MemoryRouter>
+      <UserContext.Provider value={mockUserContextValue}>
+        <MemoryRouter initialEntries={['/home']}>
+          <Home />
+        </MemoryRouter>
+      </UserContext.Provider>
     )
 
     const addWorkoutButton = screen.getByTestId('add-workout-fab')
