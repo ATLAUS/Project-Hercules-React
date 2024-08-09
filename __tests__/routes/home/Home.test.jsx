@@ -15,7 +15,15 @@ describe('Home page component with a user defined', () => {
         _id: '123',
         email: 'test@email.com',
         nickname: 'test user',
-        userId: '123'
+        userId: '123',
+        workouts: [
+          {
+            _id: '123',
+            name: 'test workout',
+            type: 'Strength Training',
+            focusArea: 'Upper'
+          }
+        ]
       }
     })
   }))

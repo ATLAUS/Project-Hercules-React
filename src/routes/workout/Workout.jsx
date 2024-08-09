@@ -78,7 +78,11 @@ export const Workout = () => {
             >
               <SaveIcon />
             </Fab>
-            <components.SaveDialog open={open} handleClose={handleClose} />
+            <components.SaveDialog
+              open={open}
+              handleClose={handleClose}
+              workoutResponse={workoutResponse}
+            />
           </>
         ) : (
           // TODO: Implement a no workout screen or component that takes

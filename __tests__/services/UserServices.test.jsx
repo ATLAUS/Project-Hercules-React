@@ -46,7 +46,6 @@ describe('Fetch User Details', () => {
 describe('User Saves a Workout', () => {
   test('Should return the saved workout', async () => {
     const workoutFromGemini = {
-      name: 'Test Workout',
       level: 'intermediate',
       focus_area: 'upper',
       type: 'strength',
@@ -64,9 +63,11 @@ describe('User Saves a Workout', () => {
       ]
     }
 
+    const name = 'Workout Name'
+
     const mockWorkoutFromDB = {
       _id: '111',
-      name: 'Test Workout',
+      name: 'Workout Name',
       level: 'intermediate',
       focusArea: 'upper',
       type: 'strength',
@@ -86,17 +87,22 @@ describe('User Saves a Workout', () => {
 
     fetch.mockResolvedValue(createFetchResponse(mockWorkoutFromDB))
 
-    const workout = await saveWorkout('token', '1a2b3c', workoutFromGemini)
+    const workout = await saveWorkout(
+      'token',
+      '1a2b3c',
+      workoutFromGemini,
+      name
+    )
 
     expect(fetch).toHaveBeenCalledWith(
-      'http://localhost:3001/api/v1/workouts/user/1a2b3c',
+      'http://localhost:3001/api/v1/workouts/userId/1a2b3c',
       {
         method: 'POST',
         headers: {
           Authorization: 'Bearer token',
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(workoutFromGemini)
+        body: JSON.stringify({ ...workoutFromGemini, name })
       }
     )
 

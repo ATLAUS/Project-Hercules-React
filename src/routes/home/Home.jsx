@@ -28,7 +28,7 @@ export const Home = () => {
 
       const response = await fetchUserDetails(accessToken, user)
 
-      if (response.user.workouts > 0) {
+      if (response.user?.workouts.length > 0) {
         setWorkouts(response.user.workouts)
       }
 
@@ -55,7 +55,6 @@ export const Home = () => {
   return (
     <>
       <div className="home-page">
-        {/* TODO: Nav should be sticky. */}
         <nav className="nav">
           <Tooltip title="Menu">
             <Button onClick={() => handleOpen(open)} data-testid="menu-button">

@@ -26,17 +26,22 @@ export const fetchUserDetails = async (accessToken, user) => {
 }
 
 /** @desc Save a workout to the database. */
-export const saveWorkout = async (accessToken, userId, workout) => {
+export const saveWorkout = async (accessToken, userId, workout, name) => {
   try {
+    const workoutWithName = {
+      ...workout,
+      name
+    }
+
     const response = await fetch(
-      `http://localhost:3001/api/v1/workouts/user/${userId}`,
+      `http://localhost:3001/api/v1/workouts/userId/${userId}`,
       {
         method: 'POST',
         headers: {
           Authorization: `Bearer ${accessToken}`,
           'Content-Type': 'application/json'
         },
-        body: JSON.stringify(workout)
+        body: JSON.stringify(workoutWithName)
       }
     )
 

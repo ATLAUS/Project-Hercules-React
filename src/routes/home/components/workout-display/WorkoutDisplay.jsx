@@ -9,7 +9,6 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
 
 export const WorkoutDisplay = ({ workouts }) => {
   return (
-    // TODO: Implement actual workout display.
     <>
       <div className="workout-display">
         {!workouts ? (
@@ -17,8 +16,8 @@ export const WorkoutDisplay = ({ workouts }) => {
         ) : (
           workouts.map((workout) => (
             // TODO:
-            // [X]1. Make the cards smaller.
-            // 2. Adjust the layout.
+            // [X] 1. Make the cards smaller.
+            // [X] 2. Adjust the layout.
             // 3. Add some sort of media to the card.
             <Card
               className="workout-card"
@@ -33,11 +32,12 @@ export const WorkoutDisplay = ({ workouts }) => {
             >
               <CardHeader
                 className="workout-card-title"
-                title={workout.focus.toUpperCase() + ' BODY'}
+                title={workout.name.toUpperCase()}
               />
               <CardContent className="workout-card-content">
                 <Typography>{workout.type}</Typography>
-                <Typography color="text.secondary">{workout.date}</Typography>
+                {/* TODO: Write a helper function to  convert the date. */}
+                {/* <Typography color="text.secondary">{workout.date}</Typography> */}
               </CardContent>
               <CardActions className="btn-container">
                 <IconButton

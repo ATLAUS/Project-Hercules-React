@@ -2,6 +2,13 @@ import { MemoryRouter, useLocation } from 'react-router-dom'
 import { describe, test, expect, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import { Workout } from '../../../src/routes/workout/Workout'
+import { UserContext } from '../../../src/App'
+
+const mockUserContextValue = {
+  userData: {
+    _id: '123'
+  }
+}
 
 vi.mock('react-router-dom', async (importOriginal) => ({
   ...(await importOriginal()),
@@ -29,9 +36,11 @@ describe('Workout page component with generated workout', () => {
     useLocation.mockReturnValue(mockLocation)
 
     render(
-      <MemoryRouter>
-        <Workout />
-      </MemoryRouter>
+      <UserContext.Provider value={mockUserContextValue}>
+        <MemoryRouter>
+          <Workout />
+        </MemoryRouter>
+      </UserContext.Provider>
     )
 
     await waitFor(() => {
@@ -55,9 +64,11 @@ describe('Workout page component with no workout', () => {
     useLocation.mockReturnValue({ state: null })
 
     render(
-      <MemoryRouter>
-        <Workout />
-      </MemoryRouter>
+      <UserContext.Provider value={mockUserContextValue}>
+        <MemoryRouter>
+          <Workout />
+        </MemoryRouter>
+      </UserContext.Provider>
     )
 
     await waitFor(() => {
