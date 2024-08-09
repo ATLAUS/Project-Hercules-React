@@ -12,10 +12,14 @@ export const ExerciseCard = ({ exercise }) => {
         data-testid="exercise-card"
         style={{ borderRadius: 15, backgroundColor: '#efefef' }}
       >
-        <CardHeader title={exercise.name} />
+        <CardHeader title={exercise.name} data-testid="exercise-card-name" />
         <CardContent>
-          <Typography>R: {exercise.reps}</Typography>
-          <Typography>S: {exercise.sets}</Typography>
+          <Typography data-testid="exercise-card-rep">
+            R: {exercise.reps}
+          </Typography>
+          <Typography data-testid="exercise-card-set">
+            S: {exercise.sets}
+          </Typography>
         </CardContent>
       </Card>
     </>

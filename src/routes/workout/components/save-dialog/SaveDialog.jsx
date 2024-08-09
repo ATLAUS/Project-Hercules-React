@@ -35,7 +35,6 @@ export const SaveDialog = ({ open, handleClose }) => {
         <TextField
           autoFocus
           required
-          // margin="dense"
           id="name"
           name="name"
           label="Workout Name"
