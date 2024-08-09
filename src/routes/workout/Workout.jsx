@@ -11,10 +11,19 @@ import HomeIcon from '@mui/icons-material/Home'
 
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
+  const [open, setOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
 
   let className = workoutResponse?.workout.focus_area
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
+  }
 
   useEffect(() => {
     setWorkoutResponse(location.state?.workout)
@@ -57,6 +66,7 @@ export const Workout = () => {
             </section>
             <Fab
               aria-label="save"
+              onClick={handleOpen}
               sx={{
                 position: 'fixed',
                 right: 16,
@@ -64,9 +74,11 @@ export const Workout = () => {
                 backgroundColor: '#efefef',
                 color: '#0167ff'
               }}
+              disableTouchRipple
             >
               <SaveIcon />
             </Fab>
+            <components.SaveDialog open={open} handleClose={handleClose} />
           </>
         ) : (
           // TODO: Implement a no workout screen or component that takes
