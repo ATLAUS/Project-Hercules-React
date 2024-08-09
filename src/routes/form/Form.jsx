@@ -1,7 +1,7 @@
 import './Form.scss'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { Button, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import { useAuth0 } from '@auth0/auth0-react'
 import { fetchNewGeminiWorkout } from '../../services/GeminiService'
 
@@ -99,7 +99,7 @@ export const Form = () => {
             </div>
 
             <div>
-              <button type="submit" data-testid="submit-button">Submit</button>
+              <Button type="submit" data-testid="submit-button" sx={{border: "white 1px solid", color: 'white'}}>Submit</Button>
             </div>
           </div>
         </form>
