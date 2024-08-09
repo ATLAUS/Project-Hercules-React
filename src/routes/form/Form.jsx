@@ -1,7 +1,9 @@
 import './Form.scss'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { Button, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { Button, IconButton, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import HomeIcon from '@mui/icons-material/Home'
 import { useAuth0 } from '@auth0/auth0-react'
 import { fetchNewGeminiWorkout } from '../../services/GeminiService'
 
@@ -47,13 +49,17 @@ export const Form = () => {
   return (
     <>
       <div className='form-page'>
-
-
-        
+        <section className='form-page-header'>
+          <nav className="nav-bar">
+            <IconButton
+              style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
+              onClick={() => navigate(-1)}
+            >
+              <ArrowBackIcon style={{ color: 'white' }} />
+            </IconButton>
+          </nav>
+        </section>
         <form onSubmit={submitHandler} data-testid="workout-form" className='workout-form'>
-          <div>
-            <img alt="People working out in a group" src="https://www.shutterstock.com/image-photo/weightlifting-fitness-people-kettle-bell-260nw-2306314323.jpg" />
-          </div>
 
           <div>
             <h1>Create Workout</h1>

@@ -13,6 +13,24 @@ $temp-black: #232933;
     width: 100%;
 }
 
+.form-page-header {
+    height: 20%;
+    width: 100%;
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background-image: url(https://www.shutterstock.com/image-photo/weightlifting-fitness-people-kettle-bell-260nw-2306314323.jpg);
+}
+
+.form-header {
+    font-size: 3.5em;
+    font-weight: 900;
+    font-style: italic;
+  }
+
 .workout-form {
     height: 100%;
     width: 100%;
@@ -25,3 +43,9 @@ $temp-black: #232933;
 .grid-item {
     margin: 5% 0% 5% 0%;
 }
+
+.nav-bar {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+  }
