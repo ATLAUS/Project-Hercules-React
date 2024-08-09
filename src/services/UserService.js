@@ -10,6 +10,7 @@ export const fetchUserDetails = async (accessToken, user) => {
   }
 
   try {
+    // TODO: Edit to check for an ENV and use the appropriate endpoint.
     const response = await fetch('http://localhost:3001/api/v1/users', {
       headers: {
         Authorization: `Bearer ${accessToken}`,

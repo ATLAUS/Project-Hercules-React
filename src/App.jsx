@@ -1,31 +1,43 @@
 import './App.scss'
-import * as route from './routes'
+import { Form, Home, Landing, Workout } from './routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+import { useState, createContext } from 'react'
 
 const router = createBrowserRouter([
   {
     path: '/',
-    element: <route.Landing />
+    element: <Landing />
   },
   {
     path: '/form',
-    element: <route.Form />
+    element: <Form />
   },
   {
     path: '/home',
-    element: <route.Home />
+    element: <Home />
   },
   {
     path: '/workout',
-    element: <route.Workout />
+    element: <Workout />
   }
 ])
 
+export const UserContext = createContext()
+
 export const App = () => {
+  const [userData, setUserData] = useState(null)
+
   return (
     <>
       <main>
-        <RouterProvider router={router}></RouterProvider>
+        <UserContext.Provider
+          value={{
+            userData,
+            setUserData
+          }}
+        >
+          <RouterProvider router={router}></RouterProvider>
+        </UserContext.Provider>
       </main>
     </>
   )
