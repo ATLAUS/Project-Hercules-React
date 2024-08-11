@@ -5,7 +5,7 @@ import CardContent from '@mui/material/CardContent'
 import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
-import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
+import MoreVertIcon from '@mui/icons-material/MoreVert'
 
 export const ExerciseCard = ({
   exercise,
@@ -29,14 +29,14 @@ export const ExerciseCard = ({
           <CardActions
             style={{
               justifyContent: 'flex-end',
-              padding: '0 8px'
+              padding: '0'
             }}
           >
             <IconButton
               onClick={handleSetAnchorEl}
               data-testid="more-options-btn"
             >
-              <MoreHorizIcon />
+              <MoreVertIcon />
             </IconButton>
           </CardActions>
           <CardContent>

@@ -13,6 +13,7 @@ import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import RemoveIcon from '@mui/icons-material/Remove'
 import EditIcon from '@mui/icons-material/Edit'
+import AddIcon from '@mui/icons-material/Add'
 import { alpha } from '@mui/material/styles'
 
 export const Workout = () => {
@@ -39,7 +40,6 @@ export const Workout = () => {
   }
 
   const handleRemoveExercise = () => {
-    console.log('Remove %s', selectedExercise.name)
     if (selectedExercise) {
       const updatedExercises = workoutResponse.workout.exercises.filter(
         (exercise) => exercise.name !== selectedExercise.name
@@ -103,6 +103,18 @@ export const Workout = () => {
                   setSelectedExercise={setSelectedExercise}
                 />
               ))}
+              <Button
+                startIcon={<AddIcon />}
+                style={{
+                  backgroundColor: '#efefef',
+                  height: '10%',
+                  width: '80%',
+                  borderRadius: 15,
+                  marginBottom: 20
+                }}
+              >
+                Add Exercise
+              </Button>
             </section>
             <Fab
               aria-label="save"
@@ -133,7 +145,7 @@ export const Workout = () => {
               onClose={handlePopoverClose}
               anchorOrigin={{
                 vertical: 'bottom',
-                horizontal: 'right'
+                horizontal: 'center'
               }}
               transformOrigin={{
                 vertical: 'top',
@@ -147,7 +159,8 @@ export const Workout = () => {
                     flexDirection: 'column',
                     alignItems: 'flex-start',
                     backgroundColor: alpha('#1f202b', 0.5),
-                    backdropFilter: 'blur(5px)'
+                    backdropFilter: 'blur(5px)',
+                    width: '30%'
                   }
                 }
               }}
@@ -155,6 +168,7 @@ export const Workout = () => {
               <Button
                 startIcon={<RemoveIcon style={{ color: '#efefef' }} />}
                 style={{ color: '#efefef' }}
+                data-testid="remove-exercise"
                 onClick={handleRemoveExercise}
               >
                 Remove
