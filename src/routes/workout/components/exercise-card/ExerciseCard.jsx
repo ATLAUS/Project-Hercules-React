@@ -7,9 +7,14 @@ import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 
-export const ExerciseCard = ({ exercise, setAnchorEl }) => {
+export const ExerciseCard = ({
+  exercise,
+  setAnchorEl,
+  setSelectedExercise
+}) => {
   const handleSetAnchorEl = (event) => {
     setAnchorEl(event.currentTarget)
+    setSelectedExercise(exercise)
   }
 
   return (

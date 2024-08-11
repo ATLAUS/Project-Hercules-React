@@ -13,11 +13,11 @@ import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import RemoveIcon from '@mui/icons-material/Remove'
 import EditIcon from '@mui/icons-material/Edit'
-import Divider from '@mui/material/Divider'
 import { alpha } from '@mui/material/styles'
 
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
+  const [selectedExercise, setSelectedExercise] = useState(null)
   const [anchorEl, setAnchorEl] = useState(null)
   const [open, setOpen] = useState(false)
   const location = useLocation()
@@ -35,8 +35,27 @@ export const Workout = () => {
 
   const handlePopoverClose = () => {
     setAnchorEl(null)
+    setSelectedExercise(null)
   }
 
+  const handleRemoveExercise = () => {
+    console.log('Remove %s', selectedExercise.name)
+    if (selectedExercise) {
+      const updatedExercises = workoutResponse.workout.exercises.filter(
+        (exercise) => exercise.name !== selectedExercise.name
+      )
+      const newWorkoutResponse = {
+        ...workoutResponse,
+        workout: {
+          ...workoutResponse.workout,
+          exercises: updatedExercises
+        }
+      }
+
+      setWorkoutResponse(newWorkoutResponse)
+      handlePopoverClose()
+    }
+  }
   const popoverOpen = Boolean(anchorEl)
   const id = popoverOpen ? 'simple-popover' : undefined
 
@@ -81,6 +100,7 @@ export const Workout = () => {
                   exercise={exercise}
                   anchorEl={anchorEl}
                   setAnchorEl={setAnchorEl}
+                  setSelectedExercise={setSelectedExercise}
                 />
               ))}
             </section>
@@ -105,6 +125,7 @@ export const Workout = () => {
               handleClose={handleClose}
               workoutResponse={workoutResponse}
             />
+            {/* TODO: Move popover to separate component */}
             <Popover
               id={id}
               open={popoverOpen}
@@ -132,15 +153,15 @@ export const Workout = () => {
               }}
             >
               <Button
-                startIcon={<RemoveIcon style={{ color: 'white' }} />}
-                style={{ color: 'white' }}
+                startIcon={<RemoveIcon style={{ color: '#efefef' }} />}
+                style={{ color: '#efefef' }}
+                onClick={handleRemoveExercise}
               >
                 Remove
               </Button>
-              <Divider style={{ color: 'white' }} />
               <Button
-                startIcon={<EditIcon style={{ color: 'white' }} />}
-                style={{ color: 'white' }}
+                startIcon={<EditIcon style={{ color: '#efefef' }} />}
+                style={{ color: '#efefef' }}
               >
                 Edit
               </Button>
