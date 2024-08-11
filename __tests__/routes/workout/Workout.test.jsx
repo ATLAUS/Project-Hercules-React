@@ -57,6 +57,8 @@ describe('Workout page component with generated workout', () => {
       expect(exercises.length).toBe(3)
     })
   })
+
+  test('should save a workout', async () => {})
 })
 
 describe('Workout page component with no workout', () => {

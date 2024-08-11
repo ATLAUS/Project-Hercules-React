@@ -9,8 +9,16 @@ import * as components from './components'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import HomeIcon from '@mui/icons-material/Home'
 
+import Popover from '@mui/material/Popover'
+import Button from '@mui/material/Button'
+import RemoveIcon from '@mui/icons-material/Remove'
+import EditIcon from '@mui/icons-material/Edit'
+import Divider from '@mui/material/Divider'
+import { alpha } from '@mui/material/styles'
+
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
+  const [anchorEl, setAnchorEl] = useState(null)
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
@@ -24,6 +32,13 @@ export const Workout = () => {
   const handleClose = () => {
     setOpen(false)
   }
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null)
+  }
+
+  const popoverOpen = Boolean(anchorEl)
+  const id = popoverOpen ? 'simple-popover' : undefined
 
   useEffect(() => {
     setWorkoutResponse(location.state?.workout)
@@ -61,7 +76,12 @@ export const Workout = () => {
             </section>
             <section className="exercise-cards">
               {workoutResponse.workout?.exercises.map((exercise, idx) => (
-                <components.ExerciseCard key={idx} exercise={exercise} />
+                <components.ExerciseCard
+                  key={idx}
+                  exercise={exercise}
+                  anchorEl={anchorEl}
+                  setAnchorEl={setAnchorEl}
+                />
               ))}
             </section>
             <Fab
@@ -78,11 +98,53 @@ export const Workout = () => {
             >
               <SaveIcon />
             </Fab>
+
+            {/* Modals */}
             <components.SaveDialog
               open={open}
               handleClose={handleClose}
               workoutResponse={workoutResponse}
             />
+            <Popover
+              id={id}
+              open={popoverOpen}
+              anchorEl={anchorEl}
+              onClose={handlePopoverClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'right'
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right'
+              }}
+              elevation={0}
+              slotProps={{
+                paper: {
+                  sx: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    backgroundColor: alpha('#1f202b', 0.5),
+                    backdropFilter: 'blur(5px)'
+                  }
+                }
+              }}
+            >
+              <Button
+                startIcon={<RemoveIcon style={{ color: 'white' }} />}
+                style={{ color: 'white' }}
+              >
+                Remove
+              </Button>
+              <Divider style={{ color: 'white' }} />
+              <Button
+                startIcon={<EditIcon style={{ color: 'white' }} />}
+                style={{ color: 'white' }}
+              >
+                Edit
+              </Button>
+            </Popover>
           </>
         ) : (
           // TODO: Implement a no workout screen or component that takes

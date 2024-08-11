@@ -2,9 +2,16 @@ import './ExerciseCard.scss'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
+import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
+import IconButton from '@mui/material/IconButton'
+import MoreHorizIcon from '@mui/icons-material/MoreHoriz'
 
-export const ExerciseCard = ({ exercise }) => {
+export const ExerciseCard = ({ exercise, setAnchorEl }) => {
+  const handleSetAnchorEl = (event) => {
+    setAnchorEl(event.currentTarget)
+  }
+
   return (
     <>
       <Card
@@ -13,14 +20,29 @@ export const ExerciseCard = ({ exercise }) => {
         style={{ borderRadius: 15, backgroundColor: '#efefef' }}
       >
         <CardHeader title={exercise.name} data-testid="exercise-card-name" />
-        <CardContent>
-          <Typography data-testid="exercise-card-rep">
-            R: {exercise.reps}
-          </Typography>
-          <Typography data-testid="exercise-card-set">
-            S: {exercise.sets}
-          </Typography>
-        </CardContent>
+        <div className="exercise-card-content">
+          <CardActions
+            style={{
+              justifyContent: 'flex-end',
+              padding: '0 8px'
+            }}
+          >
+            <IconButton
+              onClick={handleSetAnchorEl}
+              data-testid="more-options-btn"
+            >
+              <MoreHorizIcon />
+            </IconButton>
+          </CardActions>
+          <CardContent>
+            <Typography data-testid="exercise-card-rep">
+              R: {exercise.reps}
+            </Typography>
+            <Typography data-testid="exercise-card-set">
+              S: {exercise.sets}
+            </Typography>
+          </CardContent>
+        </div>
       </Card>
     </>
   )
