@@ -51,3 +51,22 @@ export const saveWorkout = async (accessToken, userId, workout, name) => {
     console.log(err.message)
   }
 }
+
+/** @desc Fetch a workout by id. */
+export const fetchWorkoutByID = async (accessToken, workoutId) => {
+  try {
+    const response = await fetch(
+      `http://localhost:3001/api/v1/workouts/${workoutId}`,
+      {
+        headers: {
+          Authorization: `Bearer ${accessToken}`
+        }
+      }
+    )
+
+    const json = await response.json()
+    return json
+  } catch (error) {
+    console.log(error.message)
+  }
+}
