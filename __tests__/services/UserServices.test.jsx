@@ -2,7 +2,8 @@ import { describe, expect, test, beforeEach, vi } from 'vitest'
 import {
   fetchUserDetails,
   saveWorkout,
-  fetchWorkoutByID
+  fetchWorkoutByID,
+  DeleteWorkoutByID
 } from '../../src/services/UserService'
 
 // eslint-disable-next-line no-undef
@@ -49,7 +50,7 @@ describe('Fetch User Details', () => {
   })
 })
 
-describe('User Saves a Workout', () => {
+describe('User can save a workout', () => {
   test('Should return the saved workout', async () => {
     const workoutFromGemini = {
       level: 'intermediate',
@@ -116,7 +117,7 @@ describe('User Saves a Workout', () => {
   })
 })
 
-describe(' User fetches a workout by ID', () => {
+describe(' User can fetch a workout by ID', () => {
   test('should return a workout', async () => {
     const mockWorkout = {
       _id: '111',
@@ -152,5 +153,33 @@ describe(' User fetches a workout by ID', () => {
     )
 
     expect(workout).toEqual(mockWorkout)
+  })
+})
+
+describe('User can delete a workout by ID', () => {
+  test('Should return a success message', async () => {
+    const successMessage = 'Workout Deleted'
+
+    const mockWorkout = {
+      _id: '111'
+    }
+
+    fetch.mockResolvedValue(
+      createFetchResponse({ message: successMessage, mockWorkout })
+    )
+
+    const response = await DeleteWorkoutByID('token', mockWorkout._id)
+
+    expect(fetch).toHaveBeenCalledWith(
+      'http://localhost:3001/api/v1/workouts/111',
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer token'
+        }
+      }
+    )
+
+    expect(response).toEqual({ message: successMessage, mockWorkout })
   })
 })
