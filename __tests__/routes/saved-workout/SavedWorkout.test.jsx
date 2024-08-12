@@ -3,7 +3,6 @@ import { render, screen, waitFor } from '@testing-library/react'
 import { MemoryRouter, Route, Routes } from 'react-router-dom'
 import { SavedWorkout } from '../../../src/routes/saved-workout/SavedWorkout'
 import { UserContext } from '../../../src/App'
-// import * as React from 'react'
 
 const mockUserContextValue = {
   userData: {

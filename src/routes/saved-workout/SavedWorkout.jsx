@@ -4,9 +4,12 @@ import { useParams } from 'react-router-dom'
 import { useAuth0 } from '@auth0/auth0-react'
 import { fetchWorkoutByID } from '../../services/UserService'
 import * as components from './components'
+import Fab from '@mui/material/Fab'
+import DeleteIcon from '@mui/icons-material/Delete'
 
 export const SavedWorkout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
+  const [open, setOpen] = useState(false)
   const { workoutID } = useParams()
   const { getAccessTokenSilently } = useAuth0()
   const hasFetched = useRef(false)
@@ -25,6 +28,14 @@ export const SavedWorkout = () => {
     } catch (error) {
       console.log(error.message)
     }
+  }
+
+  const handleOpen = () => {
+    setOpen(true)
+  }
+
+  const handleClose = () => {
+    setOpen(false)
   }
 
   useEffect(() => {
@@ -50,6 +61,24 @@ export const SavedWorkout = () => {
               <components.ExerciseCard key={idx} exercise={exercise} />
             ))}
           </section>
+          <Fab
+            aria-label="delete"
+            onClick={handleOpen}
+            sx={{
+              position: 'fixed',
+              right: 16,
+              bottom: 16,
+              backgroundColor: '#efefef'
+            }}
+          >
+            <DeleteIcon color="error" />
+          </Fab>
+          {/* Modal */}
+          <components.DeleteDialog
+            open={open}
+            handleClose={handleClose}
+            workoutID={workoutID}
+          />
         </>
       ) : (
         // TODO: Replace this with a spinner.
