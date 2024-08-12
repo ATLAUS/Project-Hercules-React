@@ -15,7 +15,6 @@ export const DeleteDialog = ({ open, handleClose, workoutID }) => {
   const { getAccessTokenSilently } = useAuth0()
 
   const deleteWorkout = async () => {
-    console.log(`Delete %s`, workoutID)
     try {
       const accessToken = await getAccessTokenSilently()
       await DeleteWorkoutByID(accessToken, workoutID)
@@ -42,7 +41,11 @@ export const DeleteDialog = ({ open, handleClose, workoutID }) => {
         </DialogContent>
         <DialogActions>
           <Button onClick={handleClose}>Cancel</Button>
-          <Button color="error" onClick={deleteWorkout}>
+          <Button
+            color="error"
+            onClick={deleteWorkout}
+            data-testid="confirm-delete-btn"
+          >
             Delete
           </Button>
         </DialogActions>

@@ -70,6 +70,7 @@ export const SavedWorkout = () => {
               bottom: 16,
               backgroundColor: '#efefef'
             }}
+            data-testid="delete-workout-btn"
           >
             <DeleteIcon color="error" />
           </Fab>
