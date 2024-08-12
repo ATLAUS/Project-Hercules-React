@@ -1,0 +1,11 @@
+$temp-blue: #007bff;
+
+.saved-workout-display {
+    height: 100%;
+    width: 100%;
+    background-color: $temp-blue;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+

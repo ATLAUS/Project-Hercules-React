@@ -6,8 +6,15 @@ import CardHeader from '@mui/material/CardHeader'
 import CardActions from '@mui/material/CardActions'
 import IconButton from '@mui/material/IconButton'
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos'
+import { useNavigate } from 'react-router-dom'
 
 export const WorkoutDisplay = ({ workouts }) => {
+  const navigate = useNavigate()
+
+  const selectWorkout = (workoutID) => {
+    navigate(`/saved-workout/${workoutID}`)
+  }
+
   return (
     <>
       <div className="workout-display">
@@ -43,7 +50,8 @@ export const WorkoutDisplay = ({ workouts }) => {
                 <IconButton
                   style={{ background: '#0167ff', color: '#fff' }}
                   onClick={() => {
-                    console.log('workout %s was clicked', workout._id)
+                    // console.log('workout %s was clicked', workout._id)
+                    selectWorkout(workout._id)
                   }}
                 >
                   <ArrowForwardIosIcon />

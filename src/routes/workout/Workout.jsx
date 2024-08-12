@@ -1,3 +1,4 @@
+// TODO: Rename file and directory to GeneratedWorkout
 import './Workout.scss'
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -8,7 +9,6 @@ import Fab from '@mui/material/Fab'
 import * as components from './components'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import HomeIcon from '@mui/icons-material/Home'
-
 import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import RemoveIcon from '@mui/icons-material/Remove'

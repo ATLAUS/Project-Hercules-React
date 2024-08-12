@@ -7,16 +7,7 @@ import Typography from '@mui/material/Typography'
 import IconButton from '@mui/material/IconButton'
 import MoreVertIcon from '@mui/icons-material/MoreVert'
 
-export const ExerciseCard = ({
-  exercise,
-  setAnchorEl,
-  setSelectedExercise
-}) => {
-  const handleSetAnchorEl = (event) => {
-    setAnchorEl(event.currentTarget)
-    setSelectedExercise(exercise)
-  }
-
+export const ExerciseCard = ({ exercise }) => {
   return (
     <>
       <Card
@@ -37,7 +28,7 @@ export const ExerciseCard = ({
             }}
           >
             <IconButton
-              onClick={handleSetAnchorEl}
+              // onClick={handleSetAnchorEl}
               data-testid="more-options-btn"
             >
               <MoreVertIcon />
