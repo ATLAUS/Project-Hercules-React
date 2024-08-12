@@ -11,14 +11,23 @@ import Tooltip from '@mui/material/Tooltip'
 import AddIcon from '@mui/icons-material/Add'
 import LogoutIcon from '@mui/icons-material/Logout'
 import { useNavigate } from 'react-router-dom'
+import { useAuth0 } from '@auth0/auth0-react'
 
 export const SideBar = ({ open, handleOpen, user }) => {
+  const { logout } = useAuth0()
   const navigate = useNavigate()
 
   const navigateToFormPage = () => {
     navigate('/form')
   }
 
+  const handleLogout = () => {
+    logout({
+      logoutParams: {
+        returnTo: window.location.origin
+      }
+    })
+  }
   return (
     <>
       <Drawer
@@ -48,7 +57,11 @@ export const SideBar = ({ open, handleOpen, user }) => {
         <Divider />
         <div className="side-bar-footer">
           <Tooltip title="Logout">
-            <Button color="error" data-testid="logout-button">
+            <Button
+              color="error"
+              onClick={handleLogout}
+              data-testid="logout-button"
+            >
               <LogoutIcon />
             </Button>
           </Tooltip>
