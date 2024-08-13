@@ -58,11 +58,12 @@ export const Form = () => {
               <ArrowBackIcon style={{ color: 'white' }} />
             </IconButton>
           </nav>
+          <h1>CREATE WORKOUT</h1>
         </section>
         <form onSubmit={submitHandler} data-testid="workout-form" className='workout-form'>
 
           <div>
-            <h1>Create Workout</h1>
+            
             <div className='grid-item'>
               <h2>Experience Level</h2>
               <ToggleButtonGroup
@@ -71,23 +72,24 @@ export const Form = () => {
                 onChange={handlelevel}
                 aria-label="experience level"
               >
-                <ToggleButton value="beginner" aria-label="beginner" sx={{color: 'white', border: 'white 1px solid'}}>Beginner</ToggleButton>
-                <ToggleButton value="intermediate" aria-label="intermediate" sx={{color: 'white', border: 'white 1px solid'}}>Intermediate</ToggleButton>
-                <ToggleButton value="advanced" aria-label="advanced" sx={{color: 'white', border: 'white 1px solid'}}>Advanced</ToggleButton>
+                <ToggleButton value="beginner" aria-label="beginner" className='toggle-btn' >Beginner</ToggleButton>
+                <ToggleButton value="intermediate" aria-label="intermediate" className='toggle-btn middle-toggle' >Intermediate</ToggleButton>
+                <ToggleButton value="advanced" aria-label="advanced" className='toggle-btn' >Advanced</ToggleButton>
               </ToggleButtonGroup>
             </div>
 
             <div className='grid-item'>
               <h2>Focus Area</h2>
               <ToggleButtonGroup
+                variant='text'
                 value={focusArea}
                 exclusive
                 onChange={handleFocus}
                 aria-label="focus area"
               >
-                <ToggleButton value="upper" aria-label="upper body" sx={{color: 'white', border: 'white 1px solid'}}>Upper Body</ToggleButton>
-                <ToggleButton value="lower" aria-label="lower body" sx={{color: 'white', border: 'white 1px solid'}}>Lower Body</ToggleButton>
-                <ToggleButton value="full" aria-label="full body" sx={{color: 'white', border: 'white 1px solid'}}>Full Body</ToggleButton>
+                <ToggleButton value="upper" aria-label="upper body" className='toggle-btn' >Upper Body</ToggleButton>
+                <ToggleButton value="lower" aria-label="lower body" className='toggle-btn middle-toggle' >Lower Body</ToggleButton>
+                <ToggleButton value="full" aria-label="full body" className='toggle-btn' >Full Body</ToggleButton>
               </ToggleButtonGroup>
             </div>
 
@@ -99,8 +101,8 @@ export const Form = () => {
                 onChange={handleType}
                 aria-label="workout type"
               >
-                <ToggleButton value="strength" aria-label="strength training" sx={{color: 'white', border: 'white 1px solid'}}>Strength</ToggleButton>
-                <ToggleButton value="body" aria-label="body building" sx={{color: 'white', border: 'white 2px solid'}}>Body Building</ToggleButton>
+                <ToggleButton value="strength" aria-label="strength training" className='toggle-btn'>Strength</ToggleButton>
+                <ToggleButton value="body" aria-label="body building" className='toggle-btn' sx={{borderLeft: '#0167ff 1px solid !important'}}>Body Building</ToggleButton>
               </ToggleButtonGroup>
             </div>
 
