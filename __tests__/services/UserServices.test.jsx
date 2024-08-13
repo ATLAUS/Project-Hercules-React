@@ -1,5 +1,10 @@
 import { describe, expect, test, beforeEach, vi } from 'vitest'
-import { fetchUserDetails, saveWorkout } from '../../src/services/UserService'
+import {
+  fetchUserDetails,
+  saveWorkout,
+  fetchWorkoutByID,
+  DeleteWorkoutByID
+} from '../../src/services/UserService'
 
 // eslint-disable-next-line no-undef
 global.fetch = vi.fn()
@@ -13,6 +18,8 @@ const createFetchResponse = (data) => {
 beforeEach(() => {
   vi.resetAllMocks()
 })
+
+// TODO: Should also test error cases? (e.g. fetch fails)
 
 describe('Fetch User Details', () => {
   test('should return user details', async () => {
@@ -43,7 +50,7 @@ describe('Fetch User Details', () => {
   })
 })
 
-describe('User Saves a Workout', () => {
+describe('User can save a workout', () => {
   test('Should return the saved workout', async () => {
     const workoutFromGemini = {
       level: 'intermediate',
@@ -107,5 +114,72 @@ describe('User Saves a Workout', () => {
     )
 
     expect(workout).toEqual(mockWorkoutFromDB)
+  })
+})
+
+describe(' User can fetch a workout by ID', () => {
+  test('should return a workout', async () => {
+    const mockWorkout = {
+      _id: '111',
+      name: 'Workout Name',
+      level: 'intermediate',
+      focusArea: 'upper',
+      type: 'strength',
+      exercises: [
+        {
+          name: 'Bench Press',
+          rep: 10,
+          set: 3
+        },
+        {
+          name: 'Bicep Curls',
+          rep: 12,
+          set: 3
+        }
+      ]
+    }
+
+    fetch.mockResolvedValue(createFetchResponse(mockWorkout))
+
+    const workout = await fetchWorkoutByID('token', '111')
+
+    expect(fetch).toHaveBeenCalledWith(
+      'http://localhost:3001/api/v1/workouts/111',
+      {
+        headers: {
+          Authorization: 'Bearer token'
+        }
+      }
+    )
+
+    expect(workout).toEqual(mockWorkout)
+  })
+})
+
+describe('User can delete a workout by ID', () => {
+  test('Should return a success message', async () => {
+    const successMessage = 'Workout Deleted'
+
+    const mockWorkout = {
+      _id: '111'
+    }
+
+    fetch.mockResolvedValue(
+      createFetchResponse({ message: successMessage, mockWorkout })
+    )
+
+    const response = await DeleteWorkoutByID('token', mockWorkout._id)
+
+    expect(fetch).toHaveBeenCalledWith(
+      'http://localhost:3001/api/v1/workouts/111',
+      {
+        method: 'DELETE',
+        headers: {
+          Authorization: 'Bearer token'
+        }
+      }
+    )
+
+    expect(response).toEqual({ message: successMessage, mockWorkout })
   })
 })

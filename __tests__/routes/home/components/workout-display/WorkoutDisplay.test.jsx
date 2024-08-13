@@ -1,11 +1,16 @@
 import { describe, expect, test } from 'vitest'
 import { render, screen } from '@testing-library/react'
+import { MemoryRouter } from 'react-router-dom'
 
 import { WorkoutDisplay } from '../../../../../src/routes/home/components/'
 
 describe('WorkoutDisplay component with no workouts', () => {
   test('should render no workouts message', () => {
-    render(<WorkoutDisplay workouts={null} />)
+    render(
+      <MemoryRouter>
+        <WorkoutDisplay workouts={null} />
+      </MemoryRouter>
+    )
 
     const workoutDisplay = screen.getByText(/no workouts to display./i)
     expect(workoutDisplay).toBeInTheDocument()
@@ -45,7 +50,11 @@ describe('WorkoutDisplay component with workouts', () => {
   ]
 
   test('should render workout cards', () => {
-    render(<WorkoutDisplay workouts={workouts} />)
+    render(
+      <MemoryRouter>
+        <WorkoutDisplay workouts={workouts} />
+      </MemoryRouter>
+    )
 
     const workoutCardsArray = screen.getAllByTestId('workout-card')
     expect(workoutCardsArray.length).toBe(workouts.length)

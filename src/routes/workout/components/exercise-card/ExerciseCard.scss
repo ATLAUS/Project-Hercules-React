@@ -6,3 +6,10 @@
   align-items: center;
   justify-content: space-between;
 }
+
+.exercise-card-content {
+  display: flex;
+  flex-direction: column;
+  width: 100px;
+  min-width: 25%;
+}

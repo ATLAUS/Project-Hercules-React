@@ -1,3 +1,4 @@
+// TODO: Rename file and directory to GeneratedWorkout
 import './Workout.scss'
 import { useState } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
@@ -8,9 +9,17 @@ import Fab from '@mui/material/Fab'
 import * as components from './components'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import HomeIcon from '@mui/icons-material/Home'
+import Popover from '@mui/material/Popover'
+import Button from '@mui/material/Button'
+import RemoveIcon from '@mui/icons-material/Remove'
+import EditIcon from '@mui/icons-material/Edit'
+import AddIcon from '@mui/icons-material/Add'
+import { alpha } from '@mui/material/styles'
 
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
+  const [selectedExercise, setSelectedExercise] = useState(null)
+  const [anchorEl, setAnchorEl] = useState(null)
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
@@ -24,6 +33,31 @@ export const Workout = () => {
   const handleClose = () => {
     setOpen(false)
   }
+
+  const handlePopoverClose = () => {
+    setAnchorEl(null)
+    setSelectedExercise(null)
+  }
+
+  const handleRemoveExercise = () => {
+    if (selectedExercise) {
+      const updatedExercises = workoutResponse.workout.exercises.filter(
+        (exercise) => exercise.name !== selectedExercise.name
+      )
+      const newWorkoutResponse = {
+        ...workoutResponse,
+        workout: {
+          ...workoutResponse.workout,
+          exercises: updatedExercises
+        }
+      }
+
+      setWorkoutResponse(newWorkoutResponse)
+      handlePopoverClose()
+    }
+  }
+  const popoverOpen = Boolean(anchorEl)
+  const id = popoverOpen ? 'simple-popover' : undefined
 
   useEffect(() => {
     setWorkoutResponse(location.state?.workout)
@@ -61,8 +95,26 @@ export const Workout = () => {
             </section>
             <section className="exercise-cards">
               {workoutResponse.workout?.exercises.map((exercise, idx) => (
-                <components.ExerciseCard key={idx} exercise={exercise} />
+                <components.ExerciseCard
+                  key={idx}
+                  exercise={exercise}
+                  anchorEl={anchorEl}
+                  setAnchorEl={setAnchorEl}
+                  setSelectedExercise={setSelectedExercise}
+                />
               ))}
+              <Button
+                startIcon={<AddIcon />}
+                style={{
+                  backgroundColor: '#efefef',
+                  height: '10%',
+                  width: '80%',
+                  borderRadius: 15,
+                  marginBottom: 20
+                }}
+              >
+                Add Exercise
+              </Button>
             </section>
             <Fab
               aria-label="save"
@@ -78,11 +130,56 @@ export const Workout = () => {
             >
               <SaveIcon />
             </Fab>
+
+            {/* Modals */}
             <components.SaveDialog
               open={open}
               handleClose={handleClose}
               workoutResponse={workoutResponse}
             />
+            {/* TODO: Move popover to separate component */}
+            <Popover
+              id={id}
+              open={popoverOpen}
+              anchorEl={anchorEl}
+              onClose={handlePopoverClose}
+              anchorOrigin={{
+                vertical: 'bottom',
+                horizontal: 'center'
+              }}
+              transformOrigin={{
+                vertical: 'top',
+                horizontal: 'right'
+              }}
+              elevation={0}
+              slotProps={{
+                paper: {
+                  sx: {
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'flex-start',
+                    backgroundColor: alpha('#1f202b', 0.5),
+                    backdropFilter: 'blur(5px)',
+                    width: '30%'
+                  }
+                }
+              }}
+            >
+              <Button
+                startIcon={<RemoveIcon style={{ color: '#efefef' }} />}
+                style={{ color: '#efefef' }}
+                data-testid="remove-exercise"
+                onClick={handleRemoveExercise}
+              >
+                Remove
+              </Button>
+              <Button
+                startIcon={<EditIcon style={{ color: '#efefef' }} />}
+                style={{ color: '#efefef' }}
+              >
+                Edit
+              </Button>
+            </Popover>
           </>
         ) : (
           // TODO: Implement a no workout screen or component that takes
