@@ -58,12 +58,10 @@ export const Form = () => {
               <ArrowBackIcon style={{ color: 'white' }} />
             </IconButton>
           </nav>
-          <h1>CREATE WORKOUT</h1>
+          <h1 className='header-text'>CREATE WORKOUT</h1>
         </section>
         <form onSubmit={submitHandler} data-testid="workout-form" className='workout-form'>
-
           <div>
-            
             <div className='grid-item'>
               <h2>Experience Level</h2>
               <ToggleButtonGroup
@@ -102,7 +100,7 @@ export const Form = () => {
                 aria-label="workout type"
               >
                 <ToggleButton value="strength" aria-label="strength training" className='toggle-btn'>Strength</ToggleButton>
-                <ToggleButton value="body" aria-label="body building" className='toggle-btn' sx={{borderLeft: '#0167ff 1px solid !important'}}>Body Building</ToggleButton>
+                <ToggleButton value="body" aria-label="body building" className='toggle-btn' >Body Building</ToggleButton>
               </ToggleButtonGroup>
             </div>
 
@@ -111,7 +109,6 @@ export const Form = () => {
             </div>
           </div>
         </form>
-        
       </div>
     </>
   )

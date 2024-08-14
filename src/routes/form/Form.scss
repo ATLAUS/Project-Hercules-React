@@ -25,12 +25,6 @@ $temp-black: #232933;
     background-image: url(https://media.istockphoto.com/id/1207041834/photo/group-of-young-happy-fit-people-doing-exercises-in-gym.jpg?s=612x612&w=0&k=20&c=3LkL97NzJct4YwSNc_X70FEX9uH-BkKBMY9Vgy1O5sg=);
 }
 
-.form-header {
-    font-size: 3.5em;
-    font-weight: 900;
-    font-style: italic;
-  }
-
 .workout-form {
     height: 100%;
     width: 100%;
@@ -48,15 +42,23 @@ $temp-black: #232933;
     display: flex;
     width: 90%;
     justify-content: space-between;
-  }
+    margin-top: 2%;
+}
+
+.header-text {
+    font-size: 2em;
+    font-weight: 900;
+    font-style: italic;
+}
 
 .toggle-btn {
+    background-color: $temp-blue !important; 
+    color: $temp-white !important;
+    border: $temp-white 1px solid !important;
+}
+
+.MuiToggleButton-root.Mui-selected {
     background-color: $temp-white !important;
     color: $temp-black !important;
     border: none !important;
-}
-
-.middle-toggle {
-    border-right: $temp-blue 2px solid !important;
-    border-left: $temp-blue 1px solid !important;
-}
+  }
