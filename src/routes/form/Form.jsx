@@ -105,7 +105,7 @@ export const Form = () => {
             </div>
 
             <div>
-              <Button type="submit" data-testid="submit-button" sx={{border: "white 1px solid", color: 'white'}}>Submit</Button>
+              <Button type="submit" data-testid="submit-button"  className='submit-btn'>Submit</Button>
             </div>
           </div>
         </form>
