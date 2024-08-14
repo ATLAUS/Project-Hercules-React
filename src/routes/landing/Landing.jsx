@@ -11,7 +11,6 @@ export const Landing = () => {
       <main>
         <h1>Project Hercules</h1>
         <components.LoginButton />
-        <components.LogoutButton />
         <div>
           <Profile />
         </div>

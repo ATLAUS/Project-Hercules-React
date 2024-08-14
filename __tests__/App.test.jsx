@@ -19,13 +19,6 @@ describe('App', () => {
     expect(loginButton).toBeInTheDocument()
   })
 
-  test('should render logout button', () => {
-    render(<App />)
-
-    const logoutButton = screen.getByText('Log Out')
-    expect(logoutButton).toBeInTheDocument()
-  })
-
   test('should render home nav button', () => {
     render(<App />)
 

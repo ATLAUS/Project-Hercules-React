@@ -10,8 +10,9 @@ ReactDOM.createRoot(document.getElementById('root')).render(
       domain="dev-oejn7owe38tonqgg.us.auth0.com"
       clientId="mIROpMCBxC8SkKlSJ35F1lJqqCOrYj7u"
       authorizationParams={{
-        redirect_uri: window.location.origin,
-        audience: 'http://localhost:3001'
+        redirect_uri:
+          import.meta.env.VITE_REDIRECT_URI || 'http://localhost:5173/home',
+        audience: import.meta.env.VITE_AUDIENCE || 'http://localhost:3001'
       }}
     >
       <App />
