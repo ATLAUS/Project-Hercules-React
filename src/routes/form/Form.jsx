@@ -3,7 +3,6 @@ import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { Button, IconButton, ToggleButton, ToggleButtonGroup } from '@mui/material'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
-import HomeIcon from '@mui/icons-material/Home'
 import { useAuth0 } from '@auth0/auth0-react'
 import { fetchNewGeminiWorkout } from '../../services/GeminiService'
 
