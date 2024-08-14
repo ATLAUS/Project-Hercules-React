@@ -1,21 +1,22 @@
 import './Landing.scss'
-import { Profile } from '../../tempProfile'
-import * as components from '../../shared/components'
-import { useNavigate } from 'react-router-dom'
+import * as components from './components'
 
 export const Landing = () => {
-  const navigate = useNavigate()
 
   return (
     <>
-      <main>
-        <h1>Project Hercules</h1>
-        <components.LoginButton />
-        <div>
-          <Profile />
-        </div>
+      <main className='hero-background'>
+        <section className='app-name-container'>
+          <div className='app-info'>
+            <h1 className='app-name'>PROJECT HERCULES</h1>
+            <span className='subtext-string'>Powered by </span>
+            <img src='https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Google_Gemini_logo.svg/1280px-Google_Gemini_logo.svg.png' alt='Gemini' className='subtext-gemini-logo'/>
+          </div>
+        </section>
         {/* TODO: Is a button to test navigate to the test Home component. */}
-        <button onClick={() => navigate('/home')}>Home</button>
+        <div className='anchored-action-button'>
+          <components.GetStartedButton />
+        </div>
       </main>
     </>
   )
