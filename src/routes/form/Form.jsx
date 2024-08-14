@@ -34,7 +34,7 @@ export const Form = () => {
     try {
       const accessToken = await getAccessTokenSilently({
         authorizationParams: {
-          audience: 'http://localhost:3001'
+          audience: import.meta.env.VITE_AUDIENCE || 'http://localhost:3001'
         }
       })
 
