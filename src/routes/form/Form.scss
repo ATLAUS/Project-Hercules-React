@@ -1,0 +1,70 @@
+$temp-blue: #0167ff;
+$temp-white: #F2F7F2;
+$temp-black: #232933;
+
+.form-page {
+    background-color: $temp-blue;
+    color: $temp-white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    height: 100%;
+    width: 100%;
+}
+
+.form-page-header {
+    height: 20%;
+    width: 100%;
+    background-position: bottom;
+    background-size: cover;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+    background-image: url(https://media.istockphoto.com/id/1207041834/photo/group-of-young-happy-fit-people-doing-exercises-in-gym.jpg?s=612x612&w=0&k=20&c=3LkL97NzJct4YwSNc_X70FEX9uH-BkKBMY9Vgy1O5sg=);
+}
+
+.workout-form {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: start;
+}
+
+.grid-item {
+    margin: 5% 0% 5% 0%;
+}
+
+.nav-bar {
+    display: flex;
+    width: 90%;
+    justify-content: space-between;
+    margin-top: 2%;
+}
+
+.header-text {
+    font-size: 2em;
+    font-weight: 900;
+    font-style: italic;
+}
+
+.toggle-btn {
+    background-color: $temp-blue !important; 
+    color: $temp-white !important;
+    border: $temp-white 1px solid !important;
+}
+
+.MuiToggleButton-root.Mui-selected {
+    background-color: $temp-white !important;
+    color: $temp-black !important;
+    border: none !important;
+  }
+
+  .submit-btn {
+    background-color: $temp-white !important;
+    color: $temp-black !important;
+    border: none !important;
+  }

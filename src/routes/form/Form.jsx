@@ -1,7 +1,9 @@
 import './Form.scss'
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react'
-import { ToggleButton, ToggleButtonGroup } from '@mui/material'
+import { Button, IconButton, ToggleButton, ToggleButtonGroup } from '@mui/material'
+import ArrowBackIcon from '@mui/icons-material/ArrowBack'
+import HomeIcon from '@mui/icons-material/Home'
 import { useAuth0 } from '@auth0/auth0-react'
 import { fetchNewGeminiWorkout } from '../../services/GeminiService'
 
@@ -46,46 +48,68 @@ export const Form = () => {
 
   return (
     <>
-        <h1>Create Workout</h1>
-        <form onSubmit={submitHandler} data-testid="workout-form">
+      <div className='form-page'>
+        <section className='form-page-header'>
+          <nav className="nav-bar">
+            <IconButton
+              style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
+              onClick={() => navigate(-1)}
+            >
+              <ArrowBackIcon style={{ color: 'white' }} />
+            </IconButton>
+          </nav>
+          <h1 className='header-text'>CREATE WORKOUT</h1>
+        </section>
+        <form onSubmit={submitHandler} data-testid="workout-form" className='workout-form'>
+          <div>
+            <div className='grid-item'>
+              <h2>Experience Level</h2>
+              <ToggleButtonGroup
+                value={level}
+                exclusive
+                onChange={handlelevel}
+                aria-label="experience level"
+              >
+                <ToggleButton value="beginner" aria-label="beginner" className='toggle-btn' >Beginner</ToggleButton>
+                <ToggleButton value="intermediate" aria-label="intermediate" className='toggle-btn middle-toggle' >Intermediate</ToggleButton>
+                <ToggleButton value="advanced" aria-label="advanced" className='toggle-btn' >Advanced</ToggleButton>
+              </ToggleButtonGroup>
+            </div>
 
-          <h2>Experience Level</h2>
-          <ToggleButtonGroup
-            value={level}
-            exclusive
-            onChange={handlelevel}
-            aria-label="experience level"
-          >
-            <ToggleButton value="beginner" aria-label="beginner" sx={{color: 'white', border: 'white 1px solid'}}>Beginner</ToggleButton>
-            <ToggleButton value="intermediate" aria-label="intermediate" sx={{color: 'white', border: 'white 1px solid'}}>Intermediate</ToggleButton>
-            <ToggleButton value="advanced" aria-label="advanced" sx={{color: 'white', border: 'white 1px solid'}}>Advanced</ToggleButton>
-          </ToggleButtonGroup>
+            <div className='grid-item'>
+              <h2>Focus Area</h2>
+              <ToggleButtonGroup
+                variant='text'
+                value={focusArea}
+                exclusive
+                onChange={handleFocus}
+                aria-label="focus area"
+              >
+                <ToggleButton value="upper" aria-label="upper body" className='toggle-btn' >Upper Body</ToggleButton>
+                <ToggleButton value="lower" aria-label="lower body" className='toggle-btn middle-toggle' >Lower Body</ToggleButton>
+                <ToggleButton value="full" aria-label="full body" className='toggle-btn' >Full Body</ToggleButton>
+              </ToggleButtonGroup>
+            </div>
 
-          <h2>Focus Area</h2>
-          <ToggleButtonGroup
-            value={focusArea}
-            exclusive
-            onChange={handleFocus}
-            aria-label="focus area"
-          >
-            <ToggleButton value="upper" aria-label="upper body" sx={{color: 'white', border: 'white 1px solid'}}>Upper Body</ToggleButton>
-            <ToggleButton value="lower" aria-label="lower body" sx={{color: 'white', border: 'white 1px solid'}}>Lower Body</ToggleButton>
-            <ToggleButton value="full" aria-label="full body" sx={{color: 'white', border: 'white 1px solid'}}>Full Body</ToggleButton>
-          </ToggleButtonGroup>
-          <h2>Workout Type</h2>
-          <ToggleButtonGroup
-            value={type}
-            exclusive
-            onChange={handleType}
-            aria-label="workout type"
-          >
-            <ToggleButton value="strength" aria-label="strength training" sx={{color: 'white', border: 'white 1px solid'}}>Strength</ToggleButton>
-            <ToggleButton value="body" aria-label="body building" sx={{color: 'white', border: 'white 1px solid'}}>Body Building</ToggleButton>
-          </ToggleButtonGroup>
+            <div className='grid-item'>
+              <h2>Workout Type</h2>
+              <ToggleButtonGroup
+                value={type}
+                exclusive
+                onChange={handleType}
+                aria-label="workout type"
+              >
+                <ToggleButton value="strength" aria-label="strength training" className='toggle-btn'>Strength</ToggleButton>
+                <ToggleButton value="body" aria-label="body building" className='toggle-btn' >Body Building</ToggleButton>
+              </ToggleButtonGroup>
+            </div>
 
-          <button type="submit" data-testid="submit-button">Submit</button>
+            <div>
+              <Button type="submit" data-testid="submit-button"  className='submit-btn'>Submit</Button>
+            </div>
+          </div>
         </form>
-        <button onClick={() => navigate('/workout')}>Workout</button>
+      </div>
     </>
   )
 }
