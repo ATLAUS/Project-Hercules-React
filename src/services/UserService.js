@@ -1,7 +1,6 @@
-// TODO: Pascal Case exported functions.
-// TODO: Add ENV urls for deployment.
 const baseURL = import.meta.env.VITE_BASE_URL || 'http://localhost:3001/api/v1'
 
+// TODO: Pascal Case exported functions.
 /** @desc Fetch user info from the database. */
 export const fetchUserDetails = async (accessToken, user) => {
   // Create new header with user info.
