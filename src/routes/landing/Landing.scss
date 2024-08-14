@@ -1,0 +1,93 @@
+$temp-white: #F2F7F2;
+
+.hero-background {
+    background-image: url('https://imgur.com/L5tGJWb.jpg');
+    background-position: center;
+    background-size: cover;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background-image: linear-gradient(180deg,rgba(0,0,0,.1) 50%, rgba(18,18,18,1) 95%);
+    }
+
+    @media (max-width: 780px) {
+        overflow: hidden;
+    }
+
+    @media (max-width: 450px) {
+        background-image: url('https://imgur.com/Kz044Ii.jpg');
+    }
+}
+
+.app-name-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+
+    @media (min-width: 1200px) {
+        justify-content: start;
+    }
+}
+
+.app-info {
+    @media (min-width: 1200px) {
+        text-align: start;
+        padding-left: 4%;
+    }
+}
+
+.app-name {
+    color: $temp-white;
+    font-size: 65px;
+    font-weight: 800;
+    font-style: italic;
+
+    @media (max-width: 780px) {
+        font-size: 50px;
+    }
+
+    @media (max-width: 530px) {
+        font-size: 40px;
+    }
+
+    @media (max-width: 400px) {
+        font-size: 35px;
+    }
+}
+
+.subtext-string {
+    font-size: 15px;
+    color: $temp-white;
+}
+
+.subtext-gemini-logo {
+    height: 20px;
+}
+
+.anchored-action-button {
+    position: absolute;
+    bottom: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 100%;
+    z-index: 2;
+
+    @media (min-width: 1200px) {
+        width: 25%;
+        left: 15%;
+        bottom: 28%;
+    }
+}
