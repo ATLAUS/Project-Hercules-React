@@ -16,7 +16,11 @@ export const DeleteDialog = ({ open, handleClose, workoutID }) => {
 
   const deleteWorkout = async () => {
     try {
-      const accessToken = await getAccessTokenSilently()
+      const accessToken = await getAccessTokenSilently({
+        authorizationParams: {
+          audience: import.meta.env.VITE_AUDIENCE || 'http://localhost:3001'
+        }
+      })
       await DeleteWorkoutByID(accessToken, workoutID)
       navigate('/home')
     } catch (error) {
