@@ -1,20 +1,19 @@
-import { describe, test, expect, beforeEach, vi } from 'vitest'
-import { render, screen, waitFor } from '@testing-library/react'
+import { describe, test, expect, vi } from 'vitest'
+import { render, screen } from '@testing-library/react'
 import { App } from '../src/App'
 
 vi.mock('@auth0/auth0-react', () => ({
   useAuth0: () => ({
-    isLoading: false
+    isLoading: false,
   })
 }))
 
+//TODO: Test complete user experience.
 describe('App', () => {
   test('should render title', () => {
     render(<App />)
 
     const title = screen.getByText(/Project Hercules/i)
-    // Either of these tests will work.
-    // expect(title).toBeVisible()
     expect(title).toBeInTheDocument()
   })
 
@@ -32,19 +31,3 @@ describe('App', () => {
     expect(clickableText).toBeInTheDocument()
   })
 })
-
-// TODO: need to update these navigation tests.
-// describe('App navigation', () => {
-//   //TODO : Figure out how to reset test to Landing page.
-//   test('should navigate to home page', async () => {
-//     render(<App />)
-
-//     const getStartedButton = screen.getByText('GET STARTED')
-//     getStartedButton.click()
-
-//     await waitFor(() => {
-//       const homePage = screen.getByText('WORKOUTS')
-//       expect(homePage).toBeInTheDocument()
-//     })
-//   })
-//})
