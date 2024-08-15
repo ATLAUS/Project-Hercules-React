@@ -52,7 +52,7 @@ export const Form = () => {
           <nav className="nav-bar">
             <IconButton
               style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
-              onClick={() => navigate(-1)}
+              onClick={() => navigate('/home')}
             >
               <ArrowBackIcon style={{ color: 'white' }} />
             </IconButton>
