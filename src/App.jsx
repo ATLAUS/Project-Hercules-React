@@ -2,29 +2,34 @@ import './App.scss'
 import { Form, Home, Landing, Workout, SavedWorkout, Error } from './routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useState, createContext } from 'react'
-import { ErrorElement } from './shared/components'
-
+import { ErrorElement, ProtectedRoute } from './shared/components'
+import { useAuth0 } from '@auth0/auth0-react'
 const router = createBrowserRouter([
   {
     path: '/',
     element: <Landing />
   },
   {
-    path: '/form',
-    element: <Form />
-  },
-  {
-    path: '/home',
-    element: <Home />
-  },
-  {
-    path: '/workout',
-    element: <Workout />,
-    errorElement: <ErrorElement />
-  },
-  {
-    path: '/saved-workout/:workoutID',
-    element: <SavedWorkout />
+    element: <ProtectedRoute />,
+    children: [
+      {
+        path: '/home',
+        element: <Home />
+      },
+      {
+        path: '/form',
+        element: <Form />
+      },
+      {
+        path: '/workout',
+        element: <Workout />,
+        errorElement: <ErrorElement />
+      },
+      {
+        path: '/saved-workout/:workoutID',
+        element: <SavedWorkout />
+      }
+    ]
   },
   {
     path: '*',
@@ -36,6 +41,12 @@ export const UserContext = createContext()
 
 export const App = () => {
   const [userData, setUserData] = useState(null)
+  const { isLoading } = useAuth0()
+
+  // TODO: Replace with a loading spinner.
+  if (isLoading) {
+    return <div>Loading...</div>
+  }
 
   return (
     <>
