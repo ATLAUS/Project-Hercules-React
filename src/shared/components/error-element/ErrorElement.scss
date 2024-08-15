@@ -1,0 +1,53 @@
+$temp-blue:#0167ff;
+$temp-orange:#E97451;
+
+
+.error-page {
+    height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: $temp-blue;
+}
+
+.error-content {
+    height:25%;
+    width: 80%;
+    text-align: left;
+}
+
+.error-title {
+    font-family: 'Roboto';
+    font-weight: 900;
+    font-style: italic;
+    font-size: 7em;
+    line-height: 100px;
+}
+
+.error-message-display {
+    display: flex;
+    justify-content: space-between;
+}
+
+.error-status {
+    font-size: 5em;
+    font-weight: 900;
+    font-style: italic;
+    line-height: 80px;
+    width: 40%;
+    color: $temp-orange;
+}
+
+.error-message {
+    width: 50%;
+    font-size: 20px;
+    // text-align: center;
+}
+
+.error-control {
+    width: 75%;
+    display: flex;
+    justify-content:flex-end;
+}
