@@ -43,6 +43,7 @@ export const App = () => {
   const [userData, setUserData] = useState(null)
   const { isLoading } = useAuth0()
 
+  // TODO: Replace with a loading spinner.
   if (isLoading) {
     return <div>Loading...</div>
   }
