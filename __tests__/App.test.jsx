@@ -2,6 +2,12 @@ import { describe, test, expect, beforeEach, vi } from 'vitest'
 import { render, screen, waitFor } from '@testing-library/react'
 import { App } from '../src/App'
 
+vi.mock('@auth0/auth0-react', () => ({
+  useAuth0: () => ({
+    isLoading: false
+  })
+}))
+
 describe('App', () => {
   test('should render title', () => {
     render(<App />)
@@ -22,7 +28,7 @@ describe('App', () => {
   test('should render clickable LOGIN text', () => {
     render(<App />)
 
-    const clickableText = screen.getByText("LOGIN")
+    const clickableText = screen.getByText('LOGIN')
     expect(clickableText).toBeInTheDocument()
   })
 })
