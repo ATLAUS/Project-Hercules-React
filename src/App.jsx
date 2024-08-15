@@ -1,5 +1,5 @@
 import './App.scss'
-import { Form, Home, Landing, Workout, SavedWorkout } from './routes'
+import { Form, Home, Landing, Workout, SavedWorkout, Error } from './routes'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useState, createContext } from 'react'
 
@@ -23,6 +23,10 @@ const router = createBrowserRouter([
   {
     path: '/saved-workout/:workoutID',
     element: <SavedWorkout />
+  },
+  {
+    path: '/error',
+    element: <Error />
   }
 ])
 
