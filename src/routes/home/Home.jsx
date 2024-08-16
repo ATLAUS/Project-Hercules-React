@@ -7,16 +7,17 @@ import Button from '@mui/material/Button'
 import Avatar from '@mui/material/Avatar'
 import Tooltip from '@mui/material/Tooltip'
 import MenuIcon from '@mui/icons-material/Menu'
-import AddIcon from '@mui/icons-material/Add'
-import Fab from '@mui/material/Fab'
 import { fetchUserDetails } from '../../services/UserService'
+// import AddIcon from '@mui/icons-material/Add'
+// import Fab from '@mui/material/Fab'
 
 export const Home = () => {
+  // TODO: Add a loader if workouts are loading.
   const [workouts, setWorkouts] = useState(null)
   const [open, setOpen] = useState(false)
-  const [bottomSheetView, setBottomSheetView] = useState(false)
   const { setUserData } = useContext(UserContext)
   const { user, getAccessTokenSilently } = useAuth0()
+  // const [bottomSheetView, setBottomSheetView] = useState(false)
 
   const fetchUserData = async () => {
     try {
@@ -43,9 +44,9 @@ export const Home = () => {
     setOpen(!viewValue)
   }
 
-  const showBottomSheet = (bottomSheetView) => {
-    setBottomSheetView(!bottomSheetView)
-  }
+  // const showBottomSheet = (bottomSheetView) => {
+  //   setBottomSheetView(!bottomSheetView)
+  // }
 
   useEffect(() => {
     if (user) {
@@ -78,7 +79,7 @@ export const Home = () => {
           <h1 className="workouts-title">WORKOUTS</h1>
           <components.WorkoutDisplay workouts={workouts} />
         </section>
-        <Fab
+        {/* <Fab
           onClick={() => showBottomSheet(bottomSheetView)}
           aria-label="add"
           sx={{
@@ -91,15 +92,16 @@ export const Home = () => {
           data-testid="add-workout-fab"
         >
           <AddIcon />
-        </Fab>
+        </Fab> */}
       </div>
 
       {/* Drawers */}
       <components.SideBar open={open} handleOpen={handleOpen} user={user} />
-      <components.BottomSheet
+      {/* TODO: Add the form to the bottom sheet. */}
+      {/* <components.BottomSheet
         bottomSheetView={bottomSheetView}
         showBottomSheet={showBottomSheet}
-      />
+      /> */}
     </>
   )
 }
