@@ -6,6 +6,9 @@ import { fetchWorkoutByID } from '../../services/UserService'
 import * as components from './components'
 import Fab from '@mui/material/Fab'
 import DeleteIcon from '@mui/icons-material/Delete'
+import IconButton from '@mui/material/IconButton'
+import HomeIcon from '@mui/icons-material/Home'
+import { useNavigate } from 'react-router-dom'
 
 export const SavedWorkout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
@@ -13,6 +16,7 @@ export const SavedWorkout = () => {
   const { workoutID } = useParams()
   const { getAccessTokenSilently } = useAuth0()
   const hasFetched = useRef(false)
+  const navigate = useNavigate()
 
   const fetchWorkout = async () => {
     try {
@@ -49,14 +53,33 @@ export const SavedWorkout = () => {
     <section className="saved-workout-display">
       {workoutResponse ? (
         <>
-          <section className="workout-details">
-            <h1 className="workout-name" data-testid="workout-name">
-              {workoutResponse.workout?.name}
-            </h1>
-            <p>{workoutResponse.workout?.focusArea}</p>
-            <p>{workoutResponse.workout?.level}</p>
+          <section className="saved-workout-details">
+            <nav className="nav-bar">
+              <IconButton
+                style={{ borderRadius: '50%' }}
+                onClick={() => navigate('/home')}
+              >
+                <HomeIcon style={{ color: 'white' }} />
+              </IconButton>
+            </nav>
+            <header className="saved-workout-header">
+              <h1 className="saved-workout-name" data-testid="workout-name">
+                {workoutResponse.workout?.name.toUpperCase()}
+              </h1>
+              <div className="saved-workout-params">
+                <p className="saved-workout-focus">
+                  Focus Area: {workoutResponse.workout?.focusArea} body
+                </p>
+                <p className="saved-workout-type">
+                  Workout Type: {workoutResponse.workout?.type}
+                </p>
+                <p className="saved-workout-level">
+                  Level: {workoutResponse.workout?.level}
+                </p>
+              </div>
+            </header>
           </section>
-          <section className="exercise-cards">
+          <section className="saved-workout-exercise-cards-display">
             {workoutResponse.workout?.exercises.map((exercise, idx) => (
               <components.ExerciseCard key={idx} exercise={exercise} />
             ))}

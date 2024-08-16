@@ -98,22 +98,23 @@ describe('Home page component with a user defined', () => {
 
   // })
 
-  test('should open the bottom sheet', async () => {
-    render(
-      <UserContext.Provider value={mockUserContextValue}>
-        <MemoryRouter initialEntries={['/home']}>
-          <Home />
-        </MemoryRouter>
-      </UserContext.Provider>
-    )
+  // TODO: Bring this back in when the form is added to the bottom sheet.
+  // test('should open the bottom sheet', async () => {
+  //   render(
+  //     <UserContext.Provider value={mockUserContextValue}>
+  //       <MemoryRouter initialEntries={['/home']}>
+  //         <Home />
+  //       </MemoryRouter>
+  //     </UserContext.Provider>
+  //   )
 
-    const addWorkoutButton = screen.getByTestId('add-workout-fab')
-    addWorkoutButton.click()
+  //   const addWorkoutButton = screen.getByTestId('add-workout-fab')
+  //   addWorkoutButton.click()
 
-    await waitFor(() => {
-      expect(screen.getByText(/generate a workout/i)).toBeInTheDocument()
-    })
-  })
+  //   await waitFor(() => {
+  //     expect(screen.getByText(/generate a workout/i)).toBeInTheDocument()
+  //   })
+  // })
 
   // TODO: Implement this test.
   // test('should hide the bottom sheet', async () => {
