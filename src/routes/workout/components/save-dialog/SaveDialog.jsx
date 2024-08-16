@@ -16,6 +16,28 @@ export const SaveDialog = ({ open, handleClose, workoutResponse }) => {
   const { userData } = useContext(UserContext)
   const navigate = useNavigate()
 
+  const userID = userData?.user._id ?? sessionStorage.getItem('userID')
+
+  const handleSaveWorkout = async (workoutName) => {
+    try {
+      const accessToken = await getAccessTokenSilently({
+        authorizationParams: {
+          audience: import.meta.env.VITE_AUDIENCE || 'http://localhost:3001'
+        }
+      })
+      await saveWorkout(
+        accessToken,
+        userID,
+        workoutResponse?.workout,
+        workoutName
+      )
+      handleClose()
+      navigate('/home')
+    } catch (err) {
+      console.log(err.message)
+    }
+  }
+
   return (
     <Dialog
       open={open}
@@ -27,20 +49,7 @@ export const SaveDialog = ({ open, handleClose, workoutResponse }) => {
           const formData = new FormData(e.currentTarget)
           const formJSON = Object.fromEntries(formData.entries())
           const name = formJSON.name
-          // TODO: Move to a helper function.
-          const accessToken = await getAccessTokenSilently({
-            authorizationParams: {
-              audience: import.meta.env.VITE_AUDIENCE || 'http://localhost:3001'
-            }
-          })
-          await saveWorkout(
-            accessToken,
-            userData.user._id,
-            workoutResponse?.workout,
-            name
-          )
-          handleClose()
-          navigate('/home')
+          await handleSaveWorkout(name)
         },
         style: {
           width: '90%',
