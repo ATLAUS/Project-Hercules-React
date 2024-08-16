@@ -9,6 +9,7 @@ import DeleteIcon from '@mui/icons-material/Delete'
 import IconButton from '@mui/material/IconButton'
 import HomeIcon from '@mui/icons-material/Home'
 import { useNavigate } from 'react-router-dom'
+import { Loader } from '../../shared/components'
 
 export const SavedWorkout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
@@ -105,8 +106,7 @@ export const SavedWorkout = () => {
           />
         </>
       ) : (
-        // TODO: Replace this with a spinner.
-        <p>Loading...</p>
+        <Loader />
       )}
     </section>
   )
