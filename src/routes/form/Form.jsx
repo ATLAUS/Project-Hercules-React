@@ -28,6 +28,10 @@ export const Form = () => {
     setFocusArea(newFocusArea);
   }
 
+  const isDisabled = () => {
+    return !focusArea || !type || !level;
+  }
+
   async function submitHandler(e) {
     e.preventDefault()
   
@@ -104,7 +108,7 @@ export const Form = () => {
             </div>
 
             <div>
-              <Button type="submit" data-testid="submit-button"  className='submit-btn'>Submit</Button>
+              <Button type="submit" data-testid="submit-button"  className='submit-btn' disabled={isDisabled()} sx={{'&.Mui-disabled': {color: 'gray !important', backgroundColor: 'lightgray !important'}}}>Submit</Button>
             </div>
           </div>
         </form>
