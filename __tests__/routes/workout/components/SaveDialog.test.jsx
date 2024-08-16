@@ -6,7 +6,9 @@ import { MemoryRouter } from 'react-router-dom'
 
 const mockUserContextValue = {
   userData: {
-    _id: '123'
+    user: {
+      _id: '123'
+    }
   }
 }
 

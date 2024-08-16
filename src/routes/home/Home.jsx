@@ -33,6 +33,7 @@ export const Home = () => {
       }
 
       setUserData(response)
+      sessionStorage.setItem('userID', response.user._id)
     } catch (err) {
       console.log(err)
     }
