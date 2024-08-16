@@ -65,7 +65,7 @@ export const Form = () => {
         <section className="form-page-header">
           <nav className="nav-bar">
             <IconButton
-              style={{ borderRadius: '50%', backgroundColor: '#353935' }}
+              style={{ borderRadius: '50%', backgroundColor: '#0167ff' }}
               onClick={() => navigate('/home')}
               aria-label="back button"
             >
