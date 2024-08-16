@@ -36,17 +36,6 @@ $temp-white: #F2F7F2;
     align-items: center;
     height: 100%;
     width: 100%;
-
-    @media (min-width: 1200px) {
-        justify-content: start;
-    }
-}
-
-.app-info {
-    @media (min-width: 1200px) {
-        text-align: start;
-        padding-left: 4%;
-    }
 }
 
 .app-name {
@@ -77,6 +66,13 @@ $temp-white: #F2F7F2;
     height: 20px;
 }
 
+.subtext-blurb {
+    font-size: 15px;
+    font-style: italic;
+    color: $temp-white;
+    padding-top: 100px;
+}
+
 .anchored-action-button {
     position: absolute;
     bottom: 15px;
@@ -84,10 +80,4 @@ $temp-white: #F2F7F2;
     transform: translateX(-50%);
     width: 100%;
     z-index: 2;
-
-    @media (min-width: 1200px) {
-        width: 25%;
-        left: 15%;
-        bottom: 28%;
-    }
 }
