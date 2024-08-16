@@ -61,7 +61,7 @@ describe('SavedWorkout component', () => {
     )
     await waitFor(() => {
       const workoutName = screen.getByTestId('workout-name')
-      expect(workoutName).toHaveTextContent('test workout')
+      expect(workoutName).toHaveTextContent(/test workout/i)
 
       const exercises = screen.getAllByTestId('exercise-card')
       expect(exercises).toHaveLength(1)

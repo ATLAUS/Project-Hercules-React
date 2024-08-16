@@ -2,10 +2,10 @@ import './ExerciseCard.scss'
 import Card from '@mui/material/Card'
 import CardHeader from '@mui/material/CardHeader'
 import CardContent from '@mui/material/CardContent'
-import CardActions from '@mui/material/CardActions'
+// import CardActions from '@mui/material/CardActions'
 import Typography from '@mui/material/Typography'
-import IconButton from '@mui/material/IconButton'
-import MoreVertIcon from '@mui/icons-material/MoreVert'
+// import IconButton from '@mui/material/IconButton'
+// import MoreVertIcon from '@mui/icons-material/MoreVert'
 
 export const ExerciseCard = ({ exercise }) => {
   return (
@@ -21,7 +21,8 @@ export const ExerciseCard = ({ exercise }) => {
           data-testid="exercise-card-name"
         />
         <div className="exercise-card-content">
-          <CardActions
+          {/* TODO: Add functionality to remove or edit an exercise. */}
+          {/* <CardActions
             style={{
               justifyContent: 'flex-end',
               padding: '0'
@@ -33,7 +34,7 @@ export const ExerciseCard = ({ exercise }) => {
             >
               <MoreVertIcon />
             </IconButton>
-          </CardActions>
+          </CardActions> */}
           <CardContent>
             <Typography data-testid="exercise-card-rep">
               R: {exercise.reps}
