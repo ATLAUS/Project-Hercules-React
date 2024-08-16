@@ -57,6 +57,7 @@ export const Form = () => {
             <IconButton
               style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
               onClick={() => navigate(-1)}
+              aria-label='back button'
             >
               <ArrowBackIcon style={{ color: 'white' }} />
             </IconButton>
