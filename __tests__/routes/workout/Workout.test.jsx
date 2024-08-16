@@ -6,7 +6,9 @@ import { UserContext } from '../../../src/App'
 
 const mockUserContextValue = {
   userData: {
-    _id: '123'
+    user: {
+      _id: '123'
+    }
   }
 }
 
