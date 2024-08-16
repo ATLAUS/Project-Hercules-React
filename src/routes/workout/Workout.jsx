@@ -13,8 +13,9 @@ import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import RemoveIcon from '@mui/icons-material/Remove'
 import EditIcon from '@mui/icons-material/Edit'
-import AddIcon from '@mui/icons-material/Add'
 import { alpha } from '@mui/material/styles'
+
+// import AddIcon from '@mui/icons-material/Add'
 
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
@@ -101,7 +102,7 @@ export const Workout = () => {
                   setSelectedExercise={setSelectedExercise}
                 />
               ))}
-              <Button
+              {/* <Button
                 startIcon={<AddIcon />}
                 style={{
                   backgroundColor: '#efefef',
@@ -112,7 +113,7 @@ export const Workout = () => {
                 }}
               >
                 Add Exercise
-              </Button>
+              </Button> */}
             </section>
             <Fab
               aria-label="save"
