@@ -64,6 +64,37 @@ describe('Form page', () => {
     expect(bodyButton).toBeInTheDocument()
   })
 
+  test('should disable Submit Button if any form questions are unanswered', () => {
+    render(
+      <MemoryRouter initialEntries={['/form']}>
+        <Form />
+      </MemoryRouter>
+    )
+
+    const submitButton = screen.getByRole('button', { name: /submit/i })
+    expect(submitButton).toBeDisabled()
+
+    const intermediateButton = screen.getByLabelText('intermediate')
+    const upperBodyButton = screen.getByLabelText('upper body')
+    const strengthButton = screen.getByLabelText('strength training')
+
+    // Select Intermediate Level
+    fireEvent.click(intermediateButton)
+    expect(submitButton).toBeDisabled()
+
+    // Select Upper Body Focus Area
+    fireEvent.click(upperBodyButton)
+    expect(submitButton).toBeDisabled()
+
+    // Select Strength type
+    fireEvent.click(strengthButton)
+    expect(submitButton).toBeEnabled()
+
+    // Deselect Upper Body Focus Area
+    fireEvent.click(upperBodyButton)
+    expect(submitButton).toBeDisabled()
+  })
+
   test('should call fetchNewGeminiWorkout with selected options when submitting the form', async () => {
     const mockFetchNewGeminiWorkout = fetchNewGeminiWorkout
     mockFetchNewGeminiWorkout.mockResolvedValue({})

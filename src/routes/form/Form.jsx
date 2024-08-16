@@ -108,7 +108,7 @@ export const Form = () => {
             </div>
 
             <div>
-              <Button type="submit" data-testid="submit-button"  className='submit-btn' disabled={isDisabled()} sx={{'&.Mui-disabled': {color: 'gray !important', backgroundColor: 'lightgray !important'}}}>Submit</Button>
+              <Button type="submit" aria-label="submit button"  className='submit-btn' disabled={isDisabled()} sx={{'&.Mui-disabled': {color: 'gray !important', backgroundColor: 'lightgray !important'}}}>Submit</Button>
             </div>
           </div>
         </form>
