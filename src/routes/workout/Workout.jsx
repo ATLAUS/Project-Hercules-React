@@ -13,8 +13,9 @@ import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import RemoveIcon from '@mui/icons-material/Remove'
 import EditIcon from '@mui/icons-material/Edit'
-import AddIcon from '@mui/icons-material/Add'
 import { alpha } from '@mui/material/styles'
+
+// import AddIcon from '@mui/icons-material/Add'
 
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
@@ -23,8 +24,6 @@ export const Workout = () => {
   const [open, setOpen] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
-
-  let className = workoutResponse?.workout.focus_area
 
   const handleOpen = () => {
     setOpen(true)
@@ -68,16 +67,16 @@ export const Workout = () => {
       <section className="generated-workout-display">
         {workoutResponse ? (
           <>
-            <section className={`workout-details ${className}`}>
+            <section className={`workout-details`}>
               <nav className="nav-bar">
                 <IconButton
-                  style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
+                  style={{ borderRadius: '50%', backgroundColor: '#353935' }}
                   onClick={() => navigate(-1)}
                 >
                   <ArrowBackIcon style={{ color: 'white' }} />
                 </IconButton>
                 <IconButton
-                  style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
+                  style={{ borderRadius: '50%', backgroundColor: '#353935' }}
                   onClick={() => navigate('/home')}
                 >
                   <HomeIcon style={{ color: 'white' }} />
@@ -103,7 +102,7 @@ export const Workout = () => {
                   setSelectedExercise={setSelectedExercise}
                 />
               ))}
-              <Button
+              {/* <Button
                 startIcon={<AddIcon />}
                 style={{
                   backgroundColor: '#efefef',
@@ -114,7 +113,7 @@ export const Workout = () => {
                 }}
               >
                 Add Exercise
-              </Button>
+              </Button> */}
             </section>
             <Fab
               aria-label="save"
