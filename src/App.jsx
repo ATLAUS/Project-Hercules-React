@@ -4,6 +4,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import { useState, createContext } from 'react'
 import { ErrorElement, ProtectedRoute } from './shared/components'
 import { useAuth0 } from '@auth0/auth0-react'
+import { Loader } from './shared/components'
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -43,9 +45,8 @@ export const App = () => {
   const [userData, setUserData] = useState(null)
   const { isLoading } = useAuth0()
 
-  // TODO: Replace with a loading spinner.
   if (isLoading) {
-    return <div>Loading...</div>
+    return <Loader />
   }
 
   return (

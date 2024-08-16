@@ -8,6 +8,8 @@ import Avatar from '@mui/material/Avatar'
 import Tooltip from '@mui/material/Tooltip'
 import MenuIcon from '@mui/icons-material/Menu'
 import { fetchUserDetails } from '../../services/UserService'
+import { Loader } from '../../shared/components'
+
 // import AddIcon from '@mui/icons-material/Add'
 // import Fab from '@mui/material/Fab'
 
@@ -53,6 +55,10 @@ export const Home = () => {
       fetchUserData()
     }
   }, [user])
+
+  if (!workouts) {
+    return <Loader />
+  }
 
   return (
     <>

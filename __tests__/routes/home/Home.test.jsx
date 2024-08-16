@@ -20,8 +20,14 @@ describe('Home page component with a user defined', () => {
           {
             _id: '123',
             name: 'test workout',
-            type: 'Strength Training',
-            focusArea: 'Upper'
+            type: 'strength',
+            focusArea: 'upper'
+          },
+          {
+            _id: '456',
+            name: 'test workout 2',
+            type: 'body',
+            focusArea: 'lower'
           }
         ]
       }
@@ -42,7 +48,7 @@ describe('Home page component with a user defined', () => {
     vi.clearAllMocks()
   })
 
-  test('should render home page', () => {
+  test('should render home page', async () => {
     render(
       <UserContext.Provider value={mockUserContextValue}>
         <MemoryRouter initialEntries={['/home']}>
@@ -50,12 +56,13 @@ describe('Home page component with a user defined', () => {
         </MemoryRouter>
       </UserContext.Provider>
     )
-
-    const homeText = screen.getByRole('heading', { name: /workouts/i })
-    expect(homeText).toBeInTheDocument()
+    await waitFor(() => {
+      const homeText = screen.getByRole('heading', { name: /workouts/i })
+      expect(homeText).toBeInTheDocument()
+    })
   })
 
-  test('should render profile picture', () => {
+  test('should render profile picture', async () => {
     render(
       <UserContext.Provider value={{ setUserData: vi.fn() }}>
         <MemoryRouter initialEntries={['/home']}>
@@ -63,8 +70,9 @@ describe('Home page component with a user defined', () => {
         </MemoryRouter>
       </UserContext.Provider>
     )
-
-    expect(screen.getByRole('img')).toBeInTheDocument()
+    await waitFor(() => {
+      expect(screen.getByRole('img')).toBeInTheDocument()
+    })
   })
 
   // TODO: Implement this test.
@@ -81,8 +89,10 @@ describe('Home page component with a user defined', () => {
       </UserContext.Provider>
     )
 
-    const menuButton = screen.getByTestId('menu-button')
-    menuButton.click()
+    await waitFor(() => {
+      const menuButton = screen.getByTestId('menu-button')
+      menuButton.click()
+    })
 
     await waitFor(() => {
       expect(screen.getByText(/welcome chravis/i)).toBeInTheDocument()
