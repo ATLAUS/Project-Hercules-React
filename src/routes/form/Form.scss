@@ -1,6 +1,7 @@
 $temp-blue: #0167ff;
 $temp-white: #F2F7F2;
 $temp-black: #232933;
+$temp-onyx: #353935;
 
 .form-page {
     background-color: $temp-blue;
@@ -22,7 +23,7 @@ $temp-black: #232933;
     flex-direction: column;
     align-items: center;
     justify-content: start;
-    background-image: url(https://media.istockphoto.com/id/1207041834/photo/group-of-young-happy-fit-people-doing-exercises-in-gym.jpg?s=612x612&w=0&k=20&c=3LkL97NzJct4YwSNc_X70FEX9uH-BkKBMY9Vgy1O5sg=);
+    background-color: $temp-onyx;
 }
 
 .workout-form {

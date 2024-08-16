@@ -24,8 +24,6 @@ export const Workout = () => {
   const location = useLocation()
   const navigate = useNavigate()
 
-  let className = workoutResponse?.workout.focus_area
-
   const handleOpen = () => {
     setOpen(true)
   }
@@ -68,16 +66,16 @@ export const Workout = () => {
       <section className="generated-workout-display">
         {workoutResponse ? (
           <>
-            <section className={`workout-details ${className}`}>
+            <section className={`workout-details`}>
               <nav className="nav-bar">
                 <IconButton
-                  style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
+                  style={{ borderRadius: '50%', backgroundColor: '#353935' }}
                   onClick={() => navigate(-1)}
                 >
                   <ArrowBackIcon style={{ color: 'white' }} />
                 </IconButton>
                 <IconButton
-                  style={{ borderRadius: '50%', backgroundColor: '#007bff' }}
+                  style={{ borderRadius: '50%', backgroundColor: '#353935' }}
                   onClick={() => navigate('/home')}
                 >
                   <HomeIcon style={{ color: 'white' }} />
