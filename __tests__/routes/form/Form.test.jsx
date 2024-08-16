@@ -42,26 +42,50 @@ describe('Form page', () => {
     )
 
     // Level buttons
-    const beginnerButton = screen.getByLabelText('beginner')
-    const intermediateButton = screen.getByLabelText('intermediate')
-    const advancedButton = screen.getByLabelText('advanced')
+    const [beginnerButton, intermediateButton, advancedButton] = screen.getAllByRole('button', { name: /^(beginner|intermediate|advanced)$/i });
     expect(beginnerButton).toBeInTheDocument()
     expect(intermediateButton).toBeInTheDocument()
     expect(advancedButton).toBeInTheDocument()
 
     // Focus Area Buttons
-    const upperBodyButton = screen.getByLabelText('upper body')
-    const lowerBodyButton = screen.getByLabelText('lower body')
-    const fullBodyButton = screen.getByLabelText('full body')
+    const [upperBodyButton, lowerBodyButton, fullBodyButton] = screen.getAllByRole('button', { name: /^(upper body|lower body|full body)$/i });
     expect(upperBodyButton).toBeInTheDocument()
     expect(lowerBodyButton).toBeInTheDocument()
     expect(fullBodyButton).toBeInTheDocument()
 
     // Workout Type Buttons
-    const strengthButton = screen.getByLabelText('strength training')
-    const bodyButton = screen.getByLabelText('body building')
+    const [strengthButton, bodyButton] = screen.getAllByRole('button', { name: /^(strength training|body building)$/i });
     expect(strengthButton).toBeInTheDocument()
     expect(bodyButton).toBeInTheDocument()
+  })
+
+  test('should disable Submit Button if any form questions are unanswered', () => {
+    render(
+      <MemoryRouter initialEntries={['/form']}>
+        <Form />
+      </MemoryRouter>
+    )
+
+    const submitButton = screen.getByRole('button', { name: /submit/i })
+    expect(submitButton).toBeDisabled()
+
+    const [intermediateButton, upperBodyButton, strengthButton] = screen.getAllByRole('button', { name: /^(intermediate|upper body|strength training)$/i });
+
+    // Select Intermediate Level
+    fireEvent.click(intermediateButton)
+    expect(submitButton).toBeDisabled()
+
+    // Select Upper Body Focus Area
+    fireEvent.click(upperBodyButton)
+    expect(submitButton).toBeDisabled()
+
+    // Select Strength type
+    fireEvent.click(strengthButton)
+    expect(submitButton).toBeEnabled()
+
+    // Deselect Upper Body Focus Area
+    fireEvent.click(upperBodyButton)
+    expect(submitButton).toBeDisabled()
   })
 
   test('should call fetchNewGeminiWorkout with selected options when submitting the form', async () => {
@@ -73,10 +97,8 @@ describe('Form page', () => {
         <Form />
       </MemoryRouter>
     )
-
-    const intermediateButton = screen.getByLabelText('intermediate')
-    const upperBodyButton = screen.getByLabelText('upper body')
-    const strengthButton = screen.getByLabelText('strength training')
+    
+    const [intermediateButton, upperBodyButton, strengthButton] = screen.getAllByRole('button', { name: /^(intermediate|upper body|strength training)$/i });
 
     // Click Intermediate Button
     fireEvent.click(intermediateButton)
