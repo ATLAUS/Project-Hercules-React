@@ -9,6 +9,7 @@ import Fab from '@mui/material/Fab'
 import * as components from './components'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import HomeIcon from '@mui/icons-material/Home'
+import RefreshIcon from '@mui/icons-material/Refresh'
 import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import RemoveIcon from '@mui/icons-material/Remove'
@@ -75,12 +76,20 @@ export const Workout = () => {
                 >
                   <ArrowBackIcon style={{ color: 'white' }} />
                 </IconButton>
+                <div>
+                <IconButton
+                  style={{ borderRadius: '50%', backgroundColor: '#353935' }}
+                  onClick={() => navigate(-1)}
+                >
+                  <RefreshIcon style={{ color: 'white' }} />
+                </IconButton>
                 <IconButton
                   style={{ borderRadius: '50%', backgroundColor: '#353935' }}
                   onClick={() => navigate('/home')}
                 >
                   <HomeIcon style={{ color: 'white' }} />
                 </IconButton>
+                </div>
               </nav>
               <h1 className="focus-area" data-testid="workout-focus">
                 {workoutResponse.workout.focus_area.toUpperCase()} BODY
@@ -114,6 +123,7 @@ export const Workout = () => {
               >
                 Add Exercise
               </Button> */}
+
             </section>
             <Fab
               aria-label="save"
