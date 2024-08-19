@@ -15,6 +15,8 @@ import Button from '@mui/material/Button'
 import RemoveIcon from '@mui/icons-material/Remove'
 import EditIcon from '@mui/icons-material/Edit'
 import { alpha } from '@mui/material/styles'
+import { useAuth0 } from '@auth0/auth0-react'
+import { fetchNewGeminiWorkout } from '../../services/GeminiService'
 
 // import AddIcon from '@mui/icons-material/Add'
 
@@ -59,6 +61,29 @@ export const Workout = () => {
   const popoverOpen = Boolean(anchorEl)
   const id = popoverOpen ? 'simple-popover' : undefined
 
+  const { user, getAccessTokenSilently } = useAuth0()
+
+  async function generateNewWorkout() {
+    try {
+      const accessToken = await getAccessTokenSilently({
+        authorizationParams: {
+          audience: import.meta.env.VITE_AUDIENCE || 'http://localhost:3001'
+        }
+      })
+
+      const regeneratedWorkout = await fetchNewGeminiWorkout(
+        accessToken,
+        user,
+        workoutResponse?.workout?.focus_area,
+        workoutResponse?.workout?.type,
+        workoutResponse?.workout?.level
+      )
+      setWorkoutResponse(regeneratedWorkout)
+    } catch (error) {
+      console.log('error: ', error)
+    }
+  }
+
   useEffect(() => {
     setWorkoutResponse(location.state?.workout)
   }, [location.state])
@@ -79,7 +104,7 @@ export const Workout = () => {
                 <div>
                 <IconButton
                   style={{ borderRadius: '50%', backgroundColor: '#353935' }}
-                  onClick={() => navigate(-1)}
+                  onClick={() => generateNewWorkout()}
                 >
                   <RefreshIcon style={{ color: 'white' }} />
                 </IconButton>
