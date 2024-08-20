@@ -35,7 +35,20 @@ vi.mock('@auth0/auth0-react', () => ({
 }))
 
 vi.mock('../../../src/services/GeminiService', () => ({
-  fetchNewGeminiWorkout: vi.fn()
+  fetchNewGeminiWorkout: vi.fn().mockResolvedValue({         
+    workout: {
+      level: 'beginner',
+      focus_area: 'full',
+      type: 'strength',
+      exercises: [
+        { name: 'Squats' },
+        { name: 'Push-ups' },
+        { name: 'Planks' },
+        { name: 'Lunges'},
+        { name: 'Burpees'}
+      ]
+    }
+  })
 }))
 
 describe('Workout page component with generated workout', () => {
@@ -84,6 +97,9 @@ describe('Workout page component with generated workout', () => {
 
     const exercises = screen.getAllByTestId('exercise-card')
     expect(exercises.length).toBe(3)
+
+    const refreshButton = screen.getByTestId('regenerate-btn')
+    expect(refreshButton).toBeInTheDocument()
   })
 
   test('should remove an exercise from the workout', async () => {
@@ -164,83 +180,10 @@ describe('Workout page component with generated workout', () => {
 
   // TODO: Implement the following tests
   // test('should save a workout', async () => {})
-})
-
-describe('Workout page component with no workout', () => {
-  test('should render a message when there is no workout', async () => {
-    useLocation.mockReturnValue({ state: null })
-
-    render(
-      <UserContext.Provider value={mockUserContextValue}>
-        <MemoryRouter>
-          <Workout />
-        </MemoryRouter>
-      </UserContext.Provider>
-    )
-
-    const noWorkoutMessage = screen.getByText(/no workout to display/i)
-    expect(noWorkoutMessage).toBeInTheDocument()
-  })
-})
-
-describe('Regenerate a new workout', () => {
-
-  const mockLocation = {
-    state: {
-      workout: {
-        workout: {
-          level: 'beginner',
-          focus_area: 'full',
-          type: 'strength',
-          exercises: [
-            { name: 'Squats' },
-            { name: 'Push-ups' },
-            { name: 'Planks' }
-          ]
-        }
-      }
-    }
-  }
-
-  beforeEach(() => {
-    useLocation.mockReturnValue(mockLocation)
-  })
-
-  afterEach(() => {
-    useLocation.mockReset()
-  })
-
-  test('should render the Regeneration button', () => {
-
-    render(
-      <UserContext.Provider value={mockUserContextValue}>
-        <MemoryRouter>
-          <Workout />
-        </MemoryRouter>
-      </UserContext.Provider>
-    )
-
-    const refreshButton = screen.getByTestId('regenerate-btn')
-    expect(refreshButton).toBeInTheDocument()
-  })
-
-  test('clicking regenerate button should get new workout from gemini', async () => {
+  
+  test('should get new workout from gemini when Regeneration button is clicked', async () => {
 
     const mockFetchNewGeminiWorkout = fetchNewGeminiWorkout
-    mockFetchNewGeminiWorkout.mockResolvedValue({
-          workout: {
-            level: 'beginner',
-            focus_area: 'full',
-            type: 'strength',
-            exercises: [
-              { name: 'Squats' },
-              { name: 'Push-ups' },
-              { name: 'Planks' },
-              { name: 'Lunges'},
-              { name: 'Burpees'}
-            ]
-          }
-    })
 
     render(
       <UserContext.Provider value={mockUserContextValue}>
@@ -274,5 +217,22 @@ describe('Regenerate a new workout', () => {
     expect(updatedExercises[2]).toHaveTextContent('Planks')
     expect(updatedExercises[3]).toHaveTextContent('Lunges')
     expect(updatedExercises[4]).toHaveTextContent('Burpees')
+  })
+})
+
+describe('Workout page component with no workout', () => {
+  test('should render a message when there is no workout', async () => {
+    useLocation.mockReturnValue({ state: null })
+
+    render(
+      <UserContext.Provider value={mockUserContextValue}>
+        <MemoryRouter>
+          <Workout />
+        </MemoryRouter>
+      </UserContext.Provider>
+    )
+
+    const noWorkoutMessage = screen.getByText(/no workout to display/i)
+    expect(noWorkoutMessage).toBeInTheDocument()
   })
 })
