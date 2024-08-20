@@ -18,13 +18,15 @@ import { alpha } from '@mui/material/styles'
 import { useAuth0 } from '@auth0/auth0-react'
 import { fetchNewGeminiWorkout } from '../../services/GeminiService'
 
-// import AddIcon from '@mui/icons-material/Add'
+import AddIcon from '@mui/icons-material/Add'
+
 
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
   const [selectedExercise, setSelectedExercise] = useState(null)
   const [anchorEl, setAnchorEl] = useState(null)
   const [open, setOpen] = useState(false)
+  const [bottomSheetView, setBottomSheetView] = useState(false)
   const location = useLocation()
   const navigate = useNavigate()
 
@@ -58,6 +60,22 @@ export const Workout = () => {
       handlePopoverClose()
     }
   }
+
+  const handleAddExercise = (exercise) => {
+    const updatedWorkoutResponse = {
+      ...workoutResponse,
+      workout: {
+        ...workoutResponse.workout,
+        exercises: [...workoutResponse.workout.exercises, exercise]
+      }
+    }
+    setWorkoutResponse(updatedWorkoutResponse)
+  }
+
+  const showBottomSheet = (bottomSheetView) => {
+    setBottomSheetView(!bottomSheetView)
+  }
+
   const popoverOpen = Boolean(anchorEl)
   const id = popoverOpen ? 'simple-popover' : undefined
 
@@ -137,7 +155,8 @@ export const Workout = () => {
                   setSelectedExercise={setSelectedExercise}
                 />
               ))}
-              {/* <Button
+              <Button
+                onClick={() => showBottomSheet(bottomSheetView)}
                 startIcon={<AddIcon />}
                 style={{
                   backgroundColor: '#efefef',
@@ -146,9 +165,10 @@ export const Workout = () => {
                   borderRadius: 15,
                   marginBottom: 20
                 }}
+                data-testid="add-exercise-btn"
               >
                 Add Exercise
-              </Button> */}
+             </Button>
 
             </section>
             <Fab
@@ -171,6 +191,11 @@ export const Workout = () => {
               open={open}
               handleClose={handleClose}
               workoutResponse={workoutResponse}
+            />
+            <components.AddExerciseBottomSheet
+              bottomSheetView={bottomSheetView}
+              showBottomSheet={showBottomSheet}
+              handleAddExercise={handleAddExercise}
             />
             {/* TODO: Move popover to separate component */}
             <Popover
