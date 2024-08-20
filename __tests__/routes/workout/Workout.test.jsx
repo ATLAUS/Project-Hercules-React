@@ -86,7 +86,7 @@ describe('Workout page component with generated workout', () => {
     const squatOptionsButton = within(squats).getByTestId('more-options-btn')
     expect(squatOptionsButton).toBeDefined()
 
-    // Click the 'more options' button
+    // Click the 'more options' button.
     squatOptionsButton.click()
 
     // Click the 'remove' button
@@ -94,7 +94,7 @@ describe('Workout page component with generated workout', () => {
     removeButton.click()
 
     await waitFor(async () => {
-      // Re-query the document to check if the 'Squats' exercise card is no longer there
+      // Re-query the document to check if the 'Squats' exercise card is no longer there.
       const exercises = screen.getAllByTestId('exercise-card')
 
       expect(exercises.length).toBe(2)
@@ -111,22 +111,24 @@ describe('Workout page component with generated workout', () => {
       </UserContext.Provider>
     )
 
+    // Get the 'Add Exercise' button and click it.
     const addExerciseButton = screen.getByTestId('add-exercise-btn')
     expect(addExerciseButton).toBeDefined()
     addExerciseButton.click()
 
+    // Check that the AddExerciseBottomSheet is rendered.
     const AddExerciseBottomSheet = await screen.findByTestId(
       'add-exercise-bottom-sheet'
     )
     expect(AddExerciseBottomSheet).toBeDefined()
 
+    // Get the form inputs, submit button, and fill out the form.
     const exerciseNameInput = screen.getByTestId('exercise-name-input')
     const exerciseRepsInput = screen.getByTestId('exercise-reps-input')
     const exerciseSetsInput = screen.getByTestId('exercise-sets-input')
     const confirmAddExerciseButton = screen.getByTestId(
       'confirm-add-exercise-btn'
     )
-
     fireEvent.change(exerciseNameInput.querySelector('input'), {
       target: { value: 'Bench Press' }
     })
@@ -136,9 +138,9 @@ describe('Workout page component with generated workout', () => {
     fireEvent.change(exerciseSetsInput.querySelector('input'), {
       target: { value: 3 }
     })
-
     confirmAddExerciseButton.click()
 
+    // Validate that the new exercise is added to the workout.
     const newExercise = await screen.findByText(/bench press/i)
     expect(newExercise).toBeDefined()
     const exercises = screen.getAllByTestId('exercise-card')
