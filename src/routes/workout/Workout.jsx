@@ -105,6 +105,7 @@ export const Workout = () => {
                 <IconButton
                   style={{ borderRadius: '50%', backgroundColor: '#353935' }}
                   onClick={() => generateNewWorkout()}
+                  data-testid='regenerate-btn'
                 >
                   <RefreshIcon style={{ color: 'white' }} />
                 </IconButton>
@@ -117,17 +118,17 @@ export const Workout = () => {
                 </div>
               </nav>
               <h1 className="focus-area" data-testid="workout-focus">
-                {workoutResponse.workout.focus_area.toUpperCase()} BODY
+                {workoutResponse.workout?.focus_area?.toUpperCase()} BODY
               </h1>
               <p className="workout-type" data-testid="workout-type">
-                {workoutResponse.workout.type} training
+                {workoutResponse.workout?.type} training
               </p>
               <p className="workout-level" data-testid="workout-level">
-                {workoutResponse.workout.level}
+                {workoutResponse.workout?.level}
               </p>
             </section>
             <section className="exercise-cards">
-              {workoutResponse.workout?.exercises.map((exercise, idx) => (
+              {workoutResponse.workout?.exercises?.map((exercise, idx) => (
                 <components.ExerciseCard
                   key={idx}
                   exercise={exercise}
