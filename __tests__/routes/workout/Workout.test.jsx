@@ -32,9 +32,9 @@ describe('Workout page component with generated workout', () => {
           focus_area: 'full',
           type: 'strength',
           exercises: [
-            { name: 'Squats' },
-            { name: 'Push-ups' },
-            { name: 'Planks' }
+            { name: 'Squats', reps: 10, sets: 3 },
+            { name: 'Push-ups', reps: 10, sets: 3 },
+            { name: 'Pull-ups', reps: 10, sets: 3 }
           ]
         }
       }
@@ -50,24 +50,6 @@ describe('Workout page component with generated workout', () => {
   })
 
   test('should render the generated workout', async () => {
-    const mockLocation = {
-      state: {
-        workout: {
-          workout: {
-            level: 'beginner',
-            focus_area: 'full',
-            type: 'strength',
-            exercises: [
-              { name: 'Squats', reps: 10, sets: 3 },
-              { name: 'Push-ups', reps: 10, sets: 3 },
-              { name: 'Pull-ups', reps: 10, sets: 3 }
-            ]
-          }
-        }
-      }
-    }
-
-    useLocation.mockReturnValue(mockLocation)
     render(
       <UserContext.Provider value={mockUserContextValue}>
         <MemoryRouter>
@@ -120,7 +102,6 @@ describe('Workout page component with generated workout', () => {
     })
   })
 
-  // TODO: Implement the following tests
   test('should allow user to add an exercise to the workout', async () => {
     render(
       <UserContext.Provider value={mockUserContextValue}>
@@ -164,6 +145,7 @@ describe('Workout page component with generated workout', () => {
     expect(exercises.length).toBe(4)
   })
 
+  // TODO: Implement the following tests
   // test('should save a workout', async () => {})
 })
 
