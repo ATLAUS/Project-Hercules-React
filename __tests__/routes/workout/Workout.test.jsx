@@ -1,6 +1,12 @@
 import { MemoryRouter, useLocation } from 'react-router-dom'
 import { describe, test, expect, vi, beforeEach, afterEach } from 'vitest'
-import { render, screen, waitFor, within } from '@testing-library/react'
+import {
+  fireEvent,
+  render,
+  screen,
+  waitFor,
+  within
+} from '@testing-library/react'
 import { Workout } from '../../../src/routes/workout/Workout'
 import { UserContext } from '../../../src/App'
 
@@ -52,9 +58,9 @@ describe('Workout page component with generated workout', () => {
             focus_area: 'full',
             type: 'strength',
             exercises: [
-              { name: 'Squats' },
-              { name: 'Push-ups' },
-              { name: 'Planks' }
+              { name: 'Squats', reps: 10, sets: 3 },
+              { name: 'Push-ups', reps: 10, sets: 3 },
+              { name: 'Pull-ups', reps: 10, sets: 3 }
             ]
           }
         }
@@ -92,6 +98,7 @@ describe('Workout page component with generated workout', () => {
       </UserContext.Provider>
     )
 
+    // Set up the query for the 'Squats' exercise card so it can be removed.
     const [squats] = screen.getAllByTestId('exercise-card')
 
     const squatOptionsButton = within(squats).getByTestId('more-options-btn')
@@ -114,9 +121,50 @@ describe('Workout page component with generated workout', () => {
   })
 
   // TODO: Implement the following tests
-  test('should allow user to add an exercise to the workout', async () => {})
+  test('should allow user to add an exercise to the workout', async () => {
+    render(
+      <UserContext.Provider value={mockUserContextValue}>
+        <MemoryRouter>
+          <Workout />
+        </MemoryRouter>
+      </UserContext.Provider>
+    )
 
-  test('should save a workout', async () => {})
+    const addExerciseButton = screen.getByTestId('add-exercise-btn')
+    expect(addExerciseButton).toBeDefined()
+    addExerciseButton.click()
+
+    const AddExerciseBottomSheet = await screen.findByTestId(
+      'add-exercise-bottom-sheet'
+    )
+    expect(AddExerciseBottomSheet).toBeDefined()
+
+    const exerciseNameInput = screen.getByTestId('exercise-name-input')
+    const exerciseRepsInput = screen.getByTestId('exercise-reps-input')
+    const exerciseSetsInput = screen.getByTestId('exercise-sets-input')
+    const confirmAddExerciseButton = screen.getByTestId(
+      'confirm-add-exercise-btn'
+    )
+
+    fireEvent.change(exerciseNameInput.querySelector('input'), {
+      target: { value: 'Bench Press' }
+    })
+    fireEvent.change(exerciseRepsInput.querySelector('input'), {
+      target: { value: 10 }
+    })
+    fireEvent.change(exerciseSetsInput.querySelector('input'), {
+      target: { value: 3 }
+    })
+
+    confirmAddExerciseButton.click()
+
+    const newExercise = await screen.findByText(/bench press/i)
+    expect(newExercise).toBeDefined()
+    const exercises = screen.getAllByTestId('exercise-card')
+    expect(exercises.length).toBe(4)
+  })
+
+  // test('should save a workout', async () => {})
 })
 
 describe('Workout page component with no workout', () => {
