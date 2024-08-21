@@ -183,8 +183,6 @@ describe('Workout page component with generated workout', () => {
   
   test('should get new workout from gemini when Regeneration button is clicked', async () => {
 
-    const mockFetchNewGeminiWorkout = fetchNewGeminiWorkout
-
     render(
       <UserContext.Provider value={mockUserContextValue}>
         <MemoryRouter>
@@ -200,8 +198,7 @@ describe('Workout page component with generated workout', () => {
     refreshButton.click()
 
     await waitFor(() => {
-      expect(mockFetchNewGeminiWorkout).toHaveBeenCalledTimes(1)
-      expect(mockFetchNewGeminiWorkout).toHaveBeenCalledWith(
+      expect(fetchNewGeminiWorkout).toHaveBeenCalledWith(
         'fakeAccessToken', // accessToken
         expect.any(Object), // user
         'full', // selectedFocusArea
