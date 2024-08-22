@@ -9,6 +9,7 @@ import {
 } from '@testing-library/react'
 import { Workout } from '../../../src/routes/workout/Workout'
 import { UserContext } from '../../../src/App'
+import { fetchNewGeminiWorkout } from '../../../src/services/GeminiService'
 
 const mockUserContextValue = {
   userData: {
@@ -21,6 +22,33 @@ const mockUserContextValue = {
 vi.mock('react-router-dom', async (importOriginal) => ({
   ...(await importOriginal()),
   useLocation: vi.fn()
+}))
+
+vi.mock('@auth0/auth0-react', () => ({
+  useAuth0: () => ({
+    user: {
+      name: 'Chravis',
+      picture: 'https://example.com/profile-picture.png'
+    },
+    getAccessTokenSilently: vi.fn().mockResolvedValue('fakeAccessToken')
+  })
+}))
+
+vi.mock('../../../src/services/GeminiService', () => ({
+  fetchNewGeminiWorkout: vi.fn().mockResolvedValue({         
+    workout: {
+      level: 'beginner',
+      focus_area: 'full',
+      type: 'strength',
+      exercises: [
+        { name: 'Squats' },
+        { name: 'Push-ups' },
+        { name: 'Planks' },
+        { name: 'Lunges'},
+        { name: 'Burpees'}
+      ]
+    }
+  })
 }))
 
 describe('Workout page component with generated workout', () => {
@@ -69,6 +97,9 @@ describe('Workout page component with generated workout', () => {
 
     const exercises = screen.getAllByTestId('exercise-card')
     expect(exercises.length).toBe(3)
+
+    const refreshButton = screen.getByTestId('regenerate-btn')
+    expect(refreshButton).toBeInTheDocument()
   })
 
   test('should remove an exercise from the workout', async () => {
@@ -149,6 +180,41 @@ describe('Workout page component with generated workout', () => {
 
   // TODO: Implement the following tests
   // test('should save a workout', async () => {})
+  
+  test('should get new workout from gemini when Regeneration button is clicked', async () => {
+
+    render(
+      <UserContext.Provider value={mockUserContextValue}>
+        <MemoryRouter>
+          <Workout />
+        </MemoryRouter>
+      </UserContext.Provider>
+    )
+
+    const exercises = screen.getAllByTestId('exercise-card')
+    expect(exercises.length).toBe(3)
+
+    const refreshButton = screen.getByTestId('regenerate-btn')
+    refreshButton.click()
+
+    await waitFor(() => {
+      expect(fetchNewGeminiWorkout).toHaveBeenCalledWith(
+        'fakeAccessToken', // accessToken
+        expect.any(Object), // user
+        'full', // selectedFocusArea
+        'strength', // selectedWorkoutType
+        'beginner' // selectedExperienceLevel
+      )
+    })
+
+    const updatedExercises = await waitFor(() => screen.findAllByTestId('exercise-card'))
+    expect(updatedExercises).toHaveLength(5)
+    expect(updatedExercises[0]).toHaveTextContent('Squats')
+    expect(updatedExercises[1]).toHaveTextContent('Push-ups')
+    expect(updatedExercises[2]).toHaveTextContent('Planks')
+    expect(updatedExercises[3]).toHaveTextContent('Lunges')
+    expect(updatedExercises[4]).toHaveTextContent('Burpees')
+  })
 })
 
 describe('Workout page component with no workout', () => {

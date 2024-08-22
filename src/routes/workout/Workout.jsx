@@ -9,12 +9,17 @@ import Fab from '@mui/material/Fab'
 import * as components from './components'
 import ArrowBackIcon from '@mui/icons-material/ArrowBack'
 import HomeIcon from '@mui/icons-material/Home'
+import RefreshIcon from '@mui/icons-material/Refresh'
 import Popover from '@mui/material/Popover'
 import Button from '@mui/material/Button'
 import RemoveIcon from '@mui/icons-material/Remove'
 import EditIcon from '@mui/icons-material/Edit'
 import { alpha } from '@mui/material/styles'
+import { useAuth0 } from '@auth0/auth0-react'
+import { fetchNewGeminiWorkout } from '../../services/GeminiService'
+
 import AddIcon from '@mui/icons-material/Add'
+
 
 export const Workout = () => {
   const [workoutResponse, setWorkoutResponse] = useState(null)
@@ -74,6 +79,29 @@ export const Workout = () => {
   const popoverOpen = Boolean(anchorEl)
   const id = popoverOpen ? 'simple-popover' : undefined
 
+  const { user, getAccessTokenSilently } = useAuth0()
+
+  async function generateNewWorkout() {
+    try {
+      const accessToken = await getAccessTokenSilently({
+        authorizationParams: {
+          audience: import.meta.env.VITE_AUDIENCE || 'http://localhost:3001'
+        }
+      })
+
+      const regeneratedWorkout = await fetchNewGeminiWorkout(
+        accessToken,
+        user,
+        workoutResponse?.workout?.focus_area,
+        workoutResponse?.workout?.type,
+        workoutResponse?.workout?.level
+      )
+      setWorkoutResponse(regeneratedWorkout)
+    } catch (error) {
+      console.log('error: ', error)
+    }
+  }
+
   useEffect(() => {
     setWorkoutResponse(location.state?.workout)
   }, [location.state])
@@ -91,25 +119,34 @@ export const Workout = () => {
                 >
                   <ArrowBackIcon style={{ color: 'white' }} />
                 </IconButton>
+                <div>
+                <IconButton
+                  style={{ borderRadius: '50%', backgroundColor: '#353935' }}
+                  onClick={() => generateNewWorkout()}
+                  data-testid='regenerate-btn'
+                >
+                  <RefreshIcon style={{ color: 'white' }} />
+                </IconButton>
                 <IconButton
                   style={{ borderRadius: '50%', backgroundColor: '#353935' }}
                   onClick={() => navigate('/home')}
                 >
                   <HomeIcon style={{ color: 'white' }} />
                 </IconButton>
+                </div>
               </nav>
               <h1 className="focus-area" data-testid="workout-focus">
-                {workoutResponse.workout.focus_area.toUpperCase()} BODY
+                {workoutResponse.workout?.focus_area?.toUpperCase()} BODY
               </h1>
               <p className="workout-type" data-testid="workout-type">
-                {workoutResponse.workout.type} training
+                {workoutResponse.workout?.type} training
               </p>
               <p className="workout-level" data-testid="workout-level">
-                {workoutResponse.workout.level}
+                {workoutResponse.workout?.level}
               </p>
             </section>
             <section className="exercise-cards">
-              {workoutResponse.workout?.exercises.map((exercise, idx) => (
+              {workoutResponse.workout?.exercises?.map((exercise, idx) => (
                 <components.ExerciseCard
                   key={idx}
                   exercise={exercise}
@@ -131,7 +168,8 @@ export const Workout = () => {
                 data-testid="add-exercise-btn"
               >
                 Add Exercise
-              </Button>
+             </Button>
+
             </section>
             <Fab
               aria-label="save"
